@@ -1,0 +1,46 @@
+#loginContainer {
+    width: 480px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    padding: 26px 35px 35px 35px;
+    header {
+        display: block;
+        text-align: center;
+        a {
+            display: inline-block;
+            vertical-align: middle;
+            text-decoration: none;
+            h1 {
+                color: black;
+                font-weight: 800;
+                font-size: 40px;
+                margin: 0;
+                span {
+                    color: $orange;
+                }
+            }
+        }
+    }
+    mat-form-field {
+        display: block;
+    }
+    .formActions {
+        margin-top: 10px;
+        button {
+            width: 240px;
+            display: block;
+            float: left;
+            border-radius: 0;
+            &.login {
+                background-color: $orange;
+            }
+            &.register {
+                background-color: $deep-orange;
+            }
+        }
+    }
+    & .facebook {
+        width: 100%;
+        background-color: #3B5998;
+        color: #FFF;
+    }
+}

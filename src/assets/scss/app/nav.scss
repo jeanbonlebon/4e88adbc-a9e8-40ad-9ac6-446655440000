@@ -1,0 +1,35 @@
+#appNav {
+    ul {
+        li {
+            list-style-type: none;
+            display: inline-block;
+            vertical-align: middle;
+            a {
+                text-decoration: none;
+            }
+            h1 {
+                color: black;
+                font-weight: 800;
+                font-size: 40px;
+                margin: 0;
+                span {
+                    color: $orange;
+                }
+            }
+        }
+        &.navRight {
+            text-align: right;
+            padding: 0 40px 0 0;
+            li {
+                button {
+                    padding: 16px;
+                    mat-icon {
+                        font-size: 40px;
+                        width: 40px;
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
+}

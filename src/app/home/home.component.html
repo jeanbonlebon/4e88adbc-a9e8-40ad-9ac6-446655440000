@@ -1,0 +1,46 @@
+<section class="container">
+
+    <ul id="bradcrump">
+        <li><button mat-button (click)="getDatasRoot()">Mon SupFile</button></li>
+        <li *ngFor="let item of breadcrump">
+            <mat-icon>chevron_right</mat-icon>
+            <button mat-button (click)="getDatas(item._id, true, false)">{{ item.name }}</button>
+        </li>
+    </ul>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="list-head"> <!-- fxLayoutGap="10px" -->
+        <div fxFlex="10%"></div>
+        <div fxFlex="35%">Nom</div>
+        <div fxFlex="40%">Modifications</div>
+        <div fxFlex="10%"></div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <mat-list-item class="list-container" *ngFor="let folder of folders">
+
+            <button mat-button class="list-line" (click)="getDatas(folder._id, false, false)">
+                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon>folder</mat-icon></div>
+                <div fxFlex="40%" class="text-line"><h4 mat-line> {{folder.name}} </h4></div>
+                <div fxFlex="40%" class="text-line"><p mat-line> {{folder.updatedAt | date}} </p></div>
+            </button>
+            <div fxFlex="10%" class="actions">
+                <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+            </div>
+
+
+            <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
+                <button mat-menu-item (click)="rename(folder)"><mat-icon>edit</mat-icon>Renommer</button>
+                <button mat-menu-item><mat-icon>close</mat-icon>Supprimer</button>
+                <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
+                <button mat-menu-item><mat-icon>redo</mat-icon>Déplacer</button>
+                <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
+            </mat-menu>
+
+        </mat-list-item>
+
+    </div>
+
+    <div *ngIf="!folders && !folders.length">Prout</div>
+
+</section>

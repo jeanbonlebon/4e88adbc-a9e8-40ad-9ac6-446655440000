@@ -1,0 +1,58 @@
+@import "./assets/scss/supfile-theme.scss";
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+/* Colors */
+$orange : #FF9800; //Primary
+$deep-orange : #FF5722; //Accent
+
+/* Auth StyleSheets */
+@import "./assets/scss/auth/login.scss";
+
+/* App StyleSheets */
+@import "./assets/scss/app/nav.scss";
+@import "./assets/scss/app/breadcrump.scss";
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    .fullScreen {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.container {
+    width : 1280px;
+    margin: 0 auto;
+    .list-head {
+        border-bottom: solid 1px #000;
+        padding: 1.33em 0;
+    }
+    .list-container {
+        width: 100%;
+        .list-line {
+            width: 100%;
+            .icon-line {
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            .text-line {
+                text-align: left;
+                h4, p {
+                  -webkit-margin-before: 1.33em;
+                  -webkit-margin-after: 1.33em;
+                  -webkit-margin-start: 0px;
+                  -webkit-margin-end: 0px;
+                }
+            }
+        }
+        .actions {
+            & button {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}

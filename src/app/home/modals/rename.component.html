@@ -1,0 +1,14 @@
+<form [formGroup]="renameForm" (ngSubmit)="save(renameForm)">
+
+    <mat-form-field>
+        <input matInput formControlName="name" placeholder="Nouveau nom" required>
+        <mat-error *ngIf="renameForm.controls.name.hasError('required')">Le nom est requis</mat-error>
+        <mat-error *ngIf="renameForm.controls.name.hasError('pattern')">Le nom est le même que précedement</mat-error>
+    </mat-form-field>
+
+    <div class="formActions">
+        <button mat-button type="submit" [disabled]="renameForm.invalid">Enregister</button>
+        <button mat-button (click)="close()" type="button">Fermer</button>
+    </div>
+
+</form>

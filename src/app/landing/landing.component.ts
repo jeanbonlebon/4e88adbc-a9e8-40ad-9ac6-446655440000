@@ -1,0 +1,11 @@
+import { Component, AfterContentInit } from '@angular/core';
+
+@Component({
+    selector: 'landing',
+    templateUrl: './landing.component.html'
+})
+
+export class LandingComponent {
+
+    constructor() {}
+}
