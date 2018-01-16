@@ -14,7 +14,7 @@ import { Router } from './app.routing';
 import { AuthGuard } from './_guards/_index';
 import { AuthenticationService, AlertService, FolderService } from './_services/_index';
 
-import { AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
+import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { RenameComponent, AddFolderComponent } from './home/modals/_index';
@@ -29,6 +29,7 @@ import 'rxjs/add/observable/forkJoin'
   declarations: [
     AppComponent,
     LoginComponent,
+    AppHeaderComponent,
     AppLayoutComponent,
     SiteLayoutComponent,
     LandingComponent,

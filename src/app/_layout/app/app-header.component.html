@@ -1,0 +1,21 @@
+<nav id="appNav" fxLayout="row wrap" fxLayoutAlign="start center" class="list-head">
+    <ul fxFlex="40%">
+        <li><a href="#"><img src="../assets/img/app_logo.png" /></a></li>
+        <li><a href="#"><h1>Sup<span>File</span></h1></a></li>
+    </ul>
+    <ul fxFlex="60%" class="navRight">
+        <li><button mat-button><mat-icon color="primary">search</mat-icon></button></li>
+        <li><button mat-button (click)='addFolder()'><mat-icon color="primary">create_new_folder</mat-icon></button></li>
+        <li><button mat-button><mat-icon color="primary">file_upload</mat-icon></button></li>
+        <li>
+            <button mat-button [matMenuTriggerFor]="userMenu" yPosition="below">
+                <mat-icon color="primary">face</mat-icon>
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item>Mon Profil</button>
+    <button mat-menu-item>Mon Récap</button>
+</mat-menu>

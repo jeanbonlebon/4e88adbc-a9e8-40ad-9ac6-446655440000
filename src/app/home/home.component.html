@@ -44,7 +44,7 @@
     <mat-card fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="emptyFolders" class="zoneDropEmpty">
         <h2 fxFlex="70%">Vous pouvez deposer un fichier dans cette zone ou creer un nouveau dossier</h2>
         <div fxFlex="30%">
-            <mat-icon color="primary">create_new_folder</mat-icon>
+            <button mat-button><mat-icon color="primary" (click)="addFolder()">create_new_folder</mat-icon></button>
         </div>
     </mat-card>
 

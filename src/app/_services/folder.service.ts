@@ -7,7 +7,13 @@ import { Folder } from '../_models/folder';
 @Injectable()
 export class FolderService {
 
+    thisFolder: string;
+
     constructor(private http: Http) { }
+
+    actualFolder(name: string) {
+        this.thisFolder = name;
+    }
 
     get(_id: string) : Observable<Folder> {
         return this.http.get('/folder/' + _id).map((response: Response) => response.json());
@@ -17,7 +23,7 @@ export class FolderService {
         return this.http.get('/folder/childs/' + _id).map((response: Response) => response.json());
     }
 
-    create(folder: Folder) {
+    create(folder: any) {
         return this.http.post('/folder', folder);
     }
 

@@ -15,7 +15,7 @@ const appRoutes: Routes = [
       path: 'app',
       component: AppLayoutComponent,
       children : [
-          { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+          { path: '', component: HomeComponent, canActivate: [AuthGuard] , pathMatch: 'full' },
       ]
     },
 

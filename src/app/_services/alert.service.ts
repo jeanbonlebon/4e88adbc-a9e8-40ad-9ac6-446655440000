@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs/Subject';
 
@@ -7,15 +8,16 @@ export class AlertService {
 
     public alert: Subject<string> = new Subject();
 
-    constructor(private snackBar: MatSnackBar) {
+    constructor(private router: Router, private snackBar: MatSnackBar) {
 
         this.alert.subscribe(message => {
-            snackBar.open(message, null, { duration: 3000 });
-        });
+            this.showSnackbar(message)
+        })
 
     }
 
-    showToaster(message: string) {
-
+    private showSnackbar(data: string) {
+        this.snackBar.open(data, null, { duration: 3000 });
     }
+
 }
