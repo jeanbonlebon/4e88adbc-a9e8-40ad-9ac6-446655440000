@@ -16,6 +16,7 @@ import { RenameComponent } from './modals/_index';
 export class HomeComponent {
     folder : any = {};
     folders : any;
+    emptyFolders : boolean;
     breadcrump : any = [];
 
     constructor(private folderService: FolderService, public dialog: MatDialog) {
@@ -33,6 +34,7 @@ export class HomeComponent {
                 this.folders = data[0]
                 this.folder = {}
                 this.breadcrump = []
+                this.folders && this.folders.lenght ? this.emptyFolders = false : this.emptyFolders = true
             },
             (err) => console.error(err)
         )
@@ -47,6 +49,7 @@ export class HomeComponent {
 
         Observable.forkJoin(arrayRes).subscribe(
             (data) => {
+                this.emptyFolders == true ? this.emptyFolders = false : null
                 isReload == false ? this.setBreadcrump(data[0], isReturn) : null
                 this.folder = data[0]
                 this.folders = data[1]

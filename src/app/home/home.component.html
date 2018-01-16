@@ -8,14 +8,14 @@
         </li>
     </ul>
 
-    <div fxLayout="row wrap" fxLayoutAlign="start center" class="list-head"> <!-- fxLayoutGap="10px" -->
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="list-head" *ngIf="!emptyFolders"> <!-- fxLayoutGap="10px" -->
         <div fxFlex="10%"></div>
         <div fxFlex="35%">Nom</div>
         <div fxFlex="40%">Modifications</div>
         <div fxFlex="10%"></div>
     </div>
 
-    <div fxLayout="row wrap" fxLayoutAlign="start center">
+    <div fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="!emptyFolders">
 
         <mat-list-item class="list-container" *ngFor="let folder of folders">
 
@@ -41,6 +41,11 @@
 
     </div>
 
-    <div *ngIf="!folders && !folders.length">Prout</div>
+    <mat-card fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="emptyFolders" class="zoneDropEmpty">
+        <h2 fxFlex="70%">Vous pouvez deposer un fichier dans cette zone ou creer un nouveau dossier</h2>
+        <div fxFlex="30%">
+            <mat-icon color="primary">create_new_folder</mat-icon>
+        </div>
+    </mat-card>
 
 </section>

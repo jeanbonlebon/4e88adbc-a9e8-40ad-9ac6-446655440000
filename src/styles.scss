@@ -11,6 +11,7 @@ $deep-orange : #FF5722; //Accent
 /* App StyleSheets */
 @import "./assets/scss/app/nav.scss";
 @import "./assets/scss/app/breadcrump.scss";
+@import "./assets/scss/app/main.scss";
 
 body {
     font-family: 'Nunito', sans-serif;
@@ -56,3 +57,7 @@ body {
         }
     }
 }
+
+
+/* Responsive StyleSheets */
+@import "./assets/scss/responsive.scss";
