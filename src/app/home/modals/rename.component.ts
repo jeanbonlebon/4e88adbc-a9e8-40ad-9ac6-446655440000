@@ -30,13 +30,12 @@ export class RenameComponent implements OnInit {
 
     save(form) {
         this.folderService.rename(this.data._id, {name : form.value.name} ).subscribe(
-            (data) => console.log(data),
-            (err) => console.error(err),
-            () => this.dialogRef.close('New Name for' + this.data._id + ' is ' +  form.value.name)
+            (data) => this.close(true, form.value.name),
+            (err) => this.close(false, '')
         )
     }
 
-    close() {
-        this.dialogRef.close();
+    close(state: boolean, name: string) {
+        this.dialogRef.close({state : state, name : name});
     }
 }

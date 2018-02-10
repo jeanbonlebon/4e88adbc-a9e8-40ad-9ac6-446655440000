@@ -49,7 +49,6 @@ export class AuthenticationService {
                 }
             }, {scope: 'public_profile, email' })
         })
-
     }
 
     logout() {

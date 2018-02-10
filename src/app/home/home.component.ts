@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Rx';
 
@@ -14,7 +14,7 @@ import { RenameComponent } from './modals/_index';
     templateUrl: './home.component.html'
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     folder : any = {};
     folders : any;
     emptyFolders : boolean;
@@ -22,6 +22,12 @@ export class HomeComponent {
 
     constructor(private folderService: FolderService, public dialog: MatDialog, private alertService: AlertService) {
         this.getDatasRoot()
+    }
+
+    ngOnInit() {
+        this.folderService._listenReload().subscribe((folderID:any) => {
+              folderID == 'null' ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
+        })
     }
 
     public getDatasRoot() {
@@ -52,10 +58,10 @@ export class HomeComponent {
         Observable.forkJoin(arrayRes).subscribe(
             (data) => {
                 this.emptyFolders == true ? this.emptyFolders = false : null
-                this.folderService.actualFolder(this.folder)
                 isReload == false ? this.setBreadcrump(data[0], isReturn) : null
                 this.folder = data[0]
                 this.folders = data[1]
+                this.folderService.actualFolder(this.folder._id)
             },
             (err) => console.error(err)
         )
@@ -75,8 +81,10 @@ export class HomeComponent {
     public rename(data) {
         let dialogRef = this.dialog.open(RenameComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-            this.getDatas(this.folder._id , false, true)
+            if(result.state == true) {
+                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
+                this.alertService.alert.next('Le Dossier à bien été renommé')
+            }
         })
     }
 

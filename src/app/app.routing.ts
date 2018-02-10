@@ -8,6 +8,7 @@ import { SiteLayoutComponent } from './_layout/site/site-layout.component';
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { LandingComponent } from './landing/_index';
+import { ProfileComponent } from './profile/_index';
 
 const appRoutes: Routes = [
 
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
       component: AppLayoutComponent,
       children : [
           { path: '', component: HomeComponent, canActivate: [AuthGuard] , pathMatch: 'full' },
+          { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
       ]
     },
 

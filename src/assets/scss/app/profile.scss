@@ -1,0 +1,14 @@
+section.profile {
+    mat-accordion {
+        mat-expansion-panel {
+            mat-panel-title {
+                flex-basis: 0;
+            }
+            mat-panel-description {
+                flex-basis: 0;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+}

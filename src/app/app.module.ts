@@ -12,13 +12,14 @@ import { customHttpProvider } from './_helpers/_index';
 import { Router } from './app.routing';
 
 import { AuthGuard } from './_guards/_index';
-import { AuthenticationService, AlertService, FolderService } from './_services/_index';
+import { AuthenticationService, AlertService, FolderService, UserService } from './_services/_index';
 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { RenameComponent, AddFolderComponent } from './home/modals/_index';
 import { LandingComponent } from './landing/_index';
+import { ProfileComponent } from './profile/_index';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -33,6 +34,7 @@ import 'rxjs/add/observable/forkJoin'
     AppLayoutComponent,
     SiteLayoutComponent,
     LandingComponent,
+    ProfileComponent,
     HomeComponent,
     RenameComponent,
     AddFolderComponent
@@ -55,6 +57,7 @@ import 'rxjs/add/observable/forkJoin'
     AuthGuard,
     AuthenticationService,
     AlertService,
+    UserService,
     FolderService
   ],
   bootstrap: [AppComponent],
