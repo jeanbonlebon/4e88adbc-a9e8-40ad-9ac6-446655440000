@@ -6,8 +6,7 @@ import { Folder } from '../_models/folder';
 
 import { FolderService, AlertService } from '../_services/_index';
 
-import { AddFolderComponent } from './modals/_index';
-import { RenameComponent } from './modals/_index';
+import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent } from './modals/_index';
 
 @Component({
     selector: 'home',
@@ -83,7 +82,27 @@ export class HomeComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             if(result.state == true) {
                 Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
-                this.alertService.alert.next('Le Dossier à bien été renommé')
+                this.alertService.alert.next('Le dossier à bien été renommé')
+            }
+        })
+    }
+
+    public move(data) {
+        let dialogRef = this.dialog.open(MoveComponent, { panelClass : 'dialogClass', data : data })
+        dialogRef.afterClosed().subscribe(result => {
+            if(result.state == true) {
+                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
+                this.alertService.alert.next('Le dossier à bien été déplacé')
+            }
+        })
+    }
+
+    public delete(data) {
+        let dialogRef = this.dialog.open(DeleteComponent, { panelClass : 'dialogClass', data : data })
+        dialogRef.afterClosed().subscribe(result => {
+            if(result.state == true) {
+                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
+                this.alertService.alert.next('Le dossier ' + result.name + ' à bien été supprimé')
             }
         })
     }

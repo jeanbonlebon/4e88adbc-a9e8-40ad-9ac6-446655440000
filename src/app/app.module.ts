@@ -17,7 +17,7 @@ import { AuthenticationService, AlertService, FolderService, UserService } from 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
-import { RenameComponent, AddFolderComponent } from './home/modals/_index';
+import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent } from './home/modals/_index';
 import { LandingComponent } from './landing/_index';
 import { ProfileComponent } from './profile/_index';
 
@@ -37,7 +37,9 @@ import 'rxjs/add/observable/forkJoin'
     ProfileComponent,
     HomeComponent,
     RenameComponent,
-    AddFolderComponent
+    AddFolderComponent,
+    MoveComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,9 @@ import 'rxjs/add/observable/forkJoin'
   ],
   entryComponents: [
     RenameComponent,
-    AddFolderComponent
+    AddFolderComponent,
+    MoveComponent,
+    DeleteComponent
   ],
   providers: [
     customHttpProvider,

@@ -31,9 +31,9 @@
 
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
                 <button mat-menu-item (click)="rename(folder)"><mat-icon>edit</mat-icon>Renommer</button>
-                <button mat-menu-item><mat-icon>close</mat-icon>Supprimer</button>
+                <button mat-menu-item (click)="delete(folder)"><mat-icon>close</mat-icon>Supprimer</button>
                 <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
-                <button mat-menu-item><mat-icon>redo</mat-icon>Déplacer</button>
+                <button mat-menu-item (click)="move(folder)"><mat-icon>redo</mat-icon>Déplacer</button>
                 <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
             </mat-menu>
 
