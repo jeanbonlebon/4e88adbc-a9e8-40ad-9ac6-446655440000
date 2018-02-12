@@ -1,7 +1,16 @@
-<mat-list>
-   <mat-list-item> Pepper </mat-list-item>
-   <mat-divider></mat-divider>
-   <mat-list-item> Salt </mat-list-item>
-   <mat-divider></mat-divider>
-   <mat-list-item> Paprika </mat-list-item>
-</mat-list>
+<p>Déplacer le dossier vers : </p>
+<ul id="moveList">
+    <li *ngFor="let folder of folders">
+        <button mat-button
+                class="itemList"
+                [ngClass]="{'isActived' : folder.active }"
+                (click)="selectedFolder(folder)">
+        {{ folder.name }}</button>
+        <button mat-button class="iconList"><mat-icon color="primary">keyboard_arrow_right</mat-icon></button>
+    </li>
+</ul>
+
+<div class="formActions">
+    <button mat-button (click)="move()" [disabled]="!toFolder" type="submit">Déplacer</button>
+    <button mat-button (click)="close(false, '')" type="button">Fermer</button>
+</div>

@@ -18,7 +18,7 @@ export class AppHeaderComponent implements OnInit {
     constructor(public dialog: MatDialog,
                 private folderService: FolderService,
                 private router: Router,
-                private alertService: AlertService) {}
+                private alertService: AlertService) { }
 
     ngOnInit() { }
 

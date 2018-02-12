@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
     public rename(data) {
         let dialogRef = this.dialog.open(RenameComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
                 this.alertService.alert.next('Le dossier à bien été renommé')
             }
@@ -90,7 +90,7 @@ export class HomeComponent implements OnInit {
     public move(data) {
         let dialogRef = this.dialog.open(MoveComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
                 this.alertService.alert.next('Le dossier à bien été déplacé')
             }
@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
     public delete(data) {
         let dialogRef = this.dialog.open(DeleteComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
                 this.alertService.alert.next('Le dossier ' + result.name + ' à bien été supprimé')
             }

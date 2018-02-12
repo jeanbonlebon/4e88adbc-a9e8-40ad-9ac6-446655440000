@@ -4,4 +4,5 @@ export class Folder {
     path: string;
     createdAt: any;
     updatedAt: any;
+    active?: boolean;
 }
