@@ -1,0 +1,10 @@
+.formActions {
+    button {
+        width:48%;
+        display: inline-block;
+        &[type=submit] {
+            background-color: orange;
+            color: #FFF;
+        }
+    }
+}
