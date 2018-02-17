@@ -12,7 +12,7 @@ import { customHttpProvider } from './_helpers/_index';
 import { Router } from './app.routing';
 
 import { AuthGuard } from './_guards/_index';
-import { AuthenticationService, AlertService, FolderService, UserService } from './_services/_index';
+import { AuthenticationService, AlertService, FolderService, UserService, RouterService } from './_services/_index';
 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
 import { LoginComponent } from './auth/_index';
@@ -61,6 +61,7 @@ import 'rxjs/add/observable/forkJoin'
     AuthGuard,
     AuthenticationService,
     AlertService,
+    RouterService,
     UserService,
     FolderService
   ],

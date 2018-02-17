@@ -4,9 +4,18 @@
         <li><a href="#"><h1>Sup<span>File</span></h1></a></li>
     </ul>
     <ul fxFlex="60%" class="navRight">
-        <li><button mat-button><mat-icon color="primary">search</mat-icon></button></li>
-        <li><button mat-button (click)='addFolder()'><mat-icon color="primary">create_new_folder</mat-icon></button></li>
-        <li><button mat-button><mat-icon color="primary">file_upload</mat-icon></button></li>
+        <li>
+            <button mat-button routerLink=""><mat-icon color="primary">apps</mat-icon></button>
+        </li>
+        <li>
+            <button mat-button><mat-icon color="primary">search</mat-icon></button>
+        </li>
+        <li *ngIf='isMainRoute == true'>
+            <button mat-button (click)='addFolder()'><mat-icon color="primary">create_new_folder</mat-icon></button>
+        </li>
+        <li *ngIf='isMainRoute == true'>
+            <button mat-button><mat-icon color="primary">file_upload</mat-icon></button>
+        </li>
         <li>
             <button mat-button [matMenuTriggerFor]="userMenu" yPosition="below">
                 <mat-icon color="primary">face</mat-icon>
