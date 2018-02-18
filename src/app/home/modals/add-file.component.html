@@ -1,0 +1,12 @@
+<form [formGroup]="addFileForm" (ngSubmit)="save(addFileForm)">
+
+
+    <label for="file">Avatar</label>
+    <input type="file" id="file" (change)="onFileChange($event)" #fileInput>
+
+    <div class="formActions">
+        <button mat-button type="submit" [disabled]="addFileForm.invalid || loading">Ajouter le fichier</button>
+        <button mat-button type="button" (click)="close(false)">Annuler</button>
+    </div>
+
+</form>

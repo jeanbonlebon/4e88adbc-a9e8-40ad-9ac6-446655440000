@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { AddFolderComponent } from '../../home/modals/_index';
+import { AddFolderComponent, AddFileComponent } from '../../home/modals/_index';
 
 import { FolderService, AlertService, RouterService } from '../../_services/_index';
 
@@ -26,8 +26,8 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
                 private alertService: AlertService) { }
 
     ngOnInit() {
+        this.router.url == '/app' ? this.isMainRoute = false : this.isMainRoute = true
         this.routerSubscription = this.routerService.getRoute().subscribe(data => {
-            console.log(data)
             this.isMainRoute = data;
         })
     }
@@ -40,6 +40,14 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
                 this.folderService.reload(this.folder)
                 this.alertService.alert.next('Dossier ' + result.name + ' creer')
             }
+        })
+    }
+
+    addFile() {
+        this.folder = this.folderService.thisFolder
+        let dialogRef = this.dialog.open(AddFileComponent, { panelClass : 'dialogClass', data : this.folder })
+        dialogRef.afterClosed().subscribe(result => {
+
         })
     }
 

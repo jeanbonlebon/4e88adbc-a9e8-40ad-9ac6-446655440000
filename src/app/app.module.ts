@@ -12,12 +12,12 @@ import { customHttpProvider } from './_helpers/_index';
 import { Router } from './app.routing';
 
 import { AuthGuard } from './_guards/_index';
-import { AuthenticationService, AlertService, FolderService, UserService, RouterService } from './_services/_index';
+import { AuthenticationService, AlertService, FolderService, FileService, UserService, RouterService } from './_services/_index';
 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
-import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent } from './home/modals/_index';
+import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent, AddFileComponent } from './home/modals/_index';
 import { LandingComponent } from './landing/_index';
 import { ProfileComponent } from './profile/_index';
 
@@ -38,6 +38,7 @@ import 'rxjs/add/observable/forkJoin'
     HomeComponent,
     RenameComponent,
     AddFolderComponent,
+    AddFileComponent,
     MoveComponent,
     DeleteComponent
   ],
@@ -53,6 +54,7 @@ import 'rxjs/add/observable/forkJoin'
   entryComponents: [
     RenameComponent,
     AddFolderComponent,
+    AddFileComponent,
     MoveComponent,
     DeleteComponent
   ],
@@ -63,7 +65,8 @@ import 'rxjs/add/observable/forkJoin'
     AlertService,
     RouterService,
     UserService,
-    FolderService
+    FolderService,
+    FileService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

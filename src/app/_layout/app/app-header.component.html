@@ -4,27 +4,20 @@
         <li><a href="#"><h1>Sup<span>File</span></h1></a></li>
     </ul>
     <ul fxFlex="60%" class="navRight">
-        <li>
-            <button mat-button routerLink=""><mat-icon color="primary">apps</mat-icon></button>
+        <li *ngIf='isMainRoute' matTooltip="Application" matTooltipPosition="below">
+            <button mat-button [routerLink]="['../app']"><mat-icon color="primary">apps</mat-icon></button>
         </li>
-        <li>
-            <button mat-button><mat-icon color="primary">search</mat-icon></button>
-        </li>
-        <li *ngIf='isMainRoute == true'>
+        <li *ngIf='!isMainRoute' matTooltip="Ajouter un dossier" matTooltipPosition="below"> <!--  -->
             <button mat-button (click)='addFolder()'><mat-icon color="primary">create_new_folder</mat-icon></button>
         </li>
-        <li *ngIf='isMainRoute == true'>
-            <button mat-button><mat-icon color="primary">file_upload</mat-icon></button>
+        <li *ngIf='!isMainRoute' matTooltip="Uploader un fichier" matTooltipPosition="below">
+            <button mat-button (click)='addFile()'><mat-icon color="primary">file_upload</mat-icon></button>
         </li>
-        <li>
-            <button mat-button [matMenuTriggerFor]="userMenu" yPosition="below">
-                <mat-icon color="primary">face</mat-icon>
-            </button>
+        <li matTooltip="Recherche" matTooltipPosition="below">
+            <button mat-button><mat-icon color="primary">search</mat-icon></button>
+        </li>
+        <li matTooltip="Mon Profil" matTooltipPosition="below">
+            <button mat-button routerLink="profile"><mat-icon color="primary">face</mat-icon></button>
         </li>
     </ul>
 </nav>
-
-<mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item routerLink="profile">Mon Profil</button>
-    <button mat-menu-item>Mon Récap</button>
-</mat-menu>

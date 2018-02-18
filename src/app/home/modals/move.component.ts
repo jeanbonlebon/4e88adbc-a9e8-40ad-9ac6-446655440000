@@ -17,23 +17,43 @@ export class MoveComponent {
     folders: Folder[];
     toFolder: Folder;
 
+    isRoot: boolean = true;
+    isEmpty: boolean;
+
+    isDisabled = false;
+
     constructor(public dialogRef: MatDialogRef<MoveComponent>,
                 private fb: FormBuilder,
                 private folderService: FolderService,
-                @Inject(MAT_DIALOG_DATA) public data: any) { this.getDatasRoot() }
+                @Inject(MAT_DIALOG_DATA) public data: any) { this.getDatasRoot(null) }
 
 
-    public getDatasRoot() {
-        this.folderService.getChilds(null).subscribe(
-            (data) => this.folders = data,
+    public getDatasRoot(parent: any) {
+        this.folderService.getChilds(parent).subscribe(
+            (data) => {
+                this.folders = data
+                console.log(this.folders)
+                data.length == 0 ? this.isEmpty = true : this.isEmpty = false
+                parent == null ? this.isRoot = true : this.isRoot = false
+                this.isDisabled = true
+            },
             (err) => console.error(err)
         )
     }
 
     public selectedFolder(folder) {
+        this.isDisabled = false
         this.toFolder ? this.toFolder.active = false : null
         folder.active = true
         this.toFolder = folder
+    }
+
+    public move() {
+        console.log(this.data._id, this.toFolder._id)
+        this.folderService.move(this.data._id, {folder : this.toFolder._id}).subscribe(
+          (data) => this.close(true, 'Le dossier ' + this.data.name + ' à bien été déplacé dans le dossier ' + this.toFolder.name),
+          (err) => this.close(false, '')
+        )
     }
 
     public close(state: boolean, name: string) {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { Folder } from '../_models/folder';
 
-import { FolderService, AlertService } from '../_services/_index';
+import { FolderService, FileService, AlertService } from '../_services/_index';
 
 import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent } from './modals/_index';
 
@@ -16,10 +16,14 @@ import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent } f
 export class HomeComponent implements OnInit {
     folder : any = {};
     folders : any;
+    files: any;
     emptyFolders : boolean;
     breadcrump : any = [];
 
-    constructor(private folderService: FolderService, public dialog: MatDialog, private alertService: AlertService) {
+    constructor(private folderService: FolderService,
+                private fileService: FileService,
+                public dialog: MatDialog,
+                private alertService: AlertService) {
         this.getDatasRoot()
     }
 
@@ -34,10 +38,12 @@ export class HomeComponent implements OnInit {
         let arrayRes = []
 
         arrayRes.push(this.folderService.getChilds(null))
+        arrayRes.push(this.fileService.get(null))
 
         Observable.forkJoin(arrayRes).subscribe(
             (data) => {
                 this.folders = data[0]
+                this.files = data[1]
                 this.folder = {}
                 this.breadcrump = []
                 Object.keys(this.folders).length === 0 ? this.emptyFolders = true : this.emptyFolders = false
@@ -81,8 +87,7 @@ export class HomeComponent implements OnInit {
         let dialogRef = this.dialog.open(RenameComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {
-                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
-                this.alertService.alert.next('Le dossier à bien été renommé')
+                this.realodAfterAction('Le dossier à bien été renommé')
             }
         })
     }
@@ -91,8 +96,7 @@ export class HomeComponent implements OnInit {
         let dialogRef = this.dialog.open(MoveComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {
-                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
-                this.alertService.alert.next('Le dossier à bien été déplacé')
+                this.realodAfterAction(result.name)
             }
         })
     }
@@ -101,8 +105,7 @@ export class HomeComponent implements OnInit {
         let dialogRef = this.dialog.open(DeleteComponent, { panelClass : 'dialogClass', data : data })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {
-                Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
-                this.alertService.alert.next('Le dossier ' + result.name + ' à bien été supprimé')
+                this.realodAfterAction('Le dossier ' + result.name + ' à bien été supprimé')
             }
         })
     }
@@ -112,9 +115,13 @@ export class HomeComponent implements OnInit {
         let dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder })
         dialogRef.afterClosed().subscribe(result => {
             if(result.state == true) {
-                this.getDatasRoot()
-                this.alertService.alert.next('Dossier ' + result.name + ' creer')
+                this.realodAfterAction('Dossier ' + result.name + ' creer')
             }
         })
+    }
+
+    private realodAfterAction(message: string) {
+        Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
+        this.alertService.alert.next(message)
     }
 }

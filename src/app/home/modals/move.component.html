@@ -1,4 +1,12 @@
-<p>Déplacer le dossier vers : </p>
+<div id="moveBreacrump" fxLayout="row wrap" fxLayoutAlign="start center" class="list-head" *ngIf="!emptyFolders"> <!-- fxLayoutGap="10px" -->
+    <div fxFlex="20%">
+        <button *ngIf='!isRoot' mat-button (click)="getDatasRoot(null, false)" class="returnButton"><mat-icon color="primary">keyboard_arrow_left</mat-icon></button>
+    </div>
+    <div fxFlex="80%">
+        <p *ngIf="!isEmpty">Déplacer le dossier vers : </p>
+        <p *ngIf="isEmpty">Retour</p>
+    </div>
+</div>
 <ul id="moveList">
     <li *ngFor="let folder of folders">
         <button mat-button
@@ -6,11 +14,12 @@
                 [ngClass]="{'isActived' : folder.active }"
                 (click)="selectedFolder(folder)">
         {{ folder.name }}</button>
-        <button mat-button class="iconList"><mat-icon color="primary">keyboard_arrow_right</mat-icon></button>
+        <button mat-button (click)="getDatasRoot(folder._id, false)" class="iconList"><mat-icon color="primary">keyboard_arrow_right</mat-icon></button>
     </li>
 </ul>
+<p id="noRes" *ngIf="isEmpty">Pas de sous-dossiers</p>
 
 <div class="formActions">
-    <button mat-button (click)="move()" [disabled]="!toFolder" type="submit">Déplacer</button>
+    <button mat-button #moveButton (click)="move()" [disabled]="isDisabled" type="submit">Déplacer</button>
     <button mat-button (click)="close(false, '')" type="button">Fermer</button>
 </div>

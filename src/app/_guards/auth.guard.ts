@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router, private routerService: RouterService) { }
 
     canActivate() {
-
         if(this.router.url == "/" || this.router.url == "/app") {
             this.routerService.routeChange(true)
         } else {
@@ -23,9 +22,4 @@ export class AuthGuard implements CanActivate {
         this.router.navigate(['/login'])
         return false
     }
-    /*
-    isInArray(string, array) {
-        return (array.indexOf(string) > -1)
-    }
-    */
 }

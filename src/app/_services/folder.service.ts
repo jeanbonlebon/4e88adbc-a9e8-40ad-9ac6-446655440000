@@ -37,8 +37,8 @@ export class FolderService {
         return this.http.post('/folder', folder);
     }
 
-    move(_id: any) {
-        return this.http.put('/folder/move', _id);
+    move(_id: any, folder: any) {
+        return this.http.put('/folder/move/' + _id, folder);
     }
 
     rename(_id: any, name: any) {
