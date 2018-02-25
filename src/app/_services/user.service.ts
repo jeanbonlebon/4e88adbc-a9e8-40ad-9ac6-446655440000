@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+
+import { appConfig } from '../app.config';
 
 import { User } from '../_models/user';
 
 @Injectable()
 export class UserService {
 
-    constructor(private http: Http) {}
+    constructor(private http: HttpClient) {}
 
-    get() : Observable<User> {
-        return this.http.get('/user').map((response: Response) => response.json());
+    get() {
+        return this.http.get<User>('/user')
     }
 
 }

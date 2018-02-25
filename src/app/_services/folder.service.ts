@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { appConfig } from '../app.config';
+
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -11,7 +13,7 @@ export class FolderService {
     private _listener = new Subject<any>();
     thisFolder: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     _listenReload() : Observable<any> {
         return this._listener.asObservable()
@@ -25,28 +27,28 @@ export class FolderService {
         this.thisFolder = name
     }
 
-    get(_id: string) : Observable<Folder> {
-        return this.http.get('/folder/' + _id).map((response: Response) => response.json());
+    get(_id: string) {
+        return this.http.get<Folder>(appConfig.apiUrl + '/folder/' + _id)
     }
 
-    getChilds(_id: string) : Observable<Folder[]> {
-        return this.http.get('/folder/childs/' + _id).map((response: Response) => response.json());
+    getChilds(_id: string) {
+        return this.http.get<Folder[]>(appConfig.apiUrl + '/folder/childs/' + _id)
     }
 
     create(folder: any) {
-        return this.http.post('/folder', folder);
+        return this.http.post(appConfig.apiUrl + '/folder', folder)
     }
 
     move(_id: any, folder: any) {
-        return this.http.put('/folder/move/' + _id, folder);
+        return this.http.put(appConfig.apiUrl + '/folder/move/' + _id, folder)
     }
 
     rename(_id: any, name: any) {
-        return this.http.put('/folder/rename/' + _id, name);
+        return this.http.put(appConfig.apiUrl + '/folder/rename/' + _id, name)
     }
 
     delete(_id: string) {
-        return this.http.delete('/folder/' + _id);
+        return this.http.delete(appConfig.apiUrl + '/folder/' + _id)
     }
 
 }

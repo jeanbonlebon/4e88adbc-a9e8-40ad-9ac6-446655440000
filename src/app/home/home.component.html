@@ -39,6 +39,28 @@
 
         </mat-list-item>
 
+        <mat-list-item class="list-container" *ngFor="let file of files">
+
+            <button mat-button class="list-line">
+                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon>insert_drive_file</mat-icon></div>
+                <div fxFlex="40%" class="text-line"><h4 mat-line> {{file.name}} </h4></div>
+                <div fxFlex="40%" class="text-line"><p mat-line> {{file.updatedAt | date}} </p></div>
+            </button>
+            <div fxFlex="10%" class="actions">
+                <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+            </div>
+
+
+            <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
+                <button mat-menu-item (click)="rename(folder)"><mat-icon>edit</mat-icon>Renommer</button>
+                <button mat-menu-item (click)="delete(folder)"><mat-icon>close</mat-icon>Supprimer</button>
+                <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
+                <button mat-menu-item (click)="move(folder)"><mat-icon>redo</mat-icon>Déplacer</button>
+                <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
+            </mat-menu>
+
+        </mat-list-item>
+
     </div>
 
     <mat-card fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="emptyFolders" class="zoneDropEmpty">

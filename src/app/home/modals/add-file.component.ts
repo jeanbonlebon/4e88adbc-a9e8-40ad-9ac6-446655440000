@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
+import { FileService } from '../../_services/_index';
+
 @Component({
     selector: 'add-file-component',
     templateUrl: './add-file.component.html'
@@ -17,11 +19,13 @@ export class AddFileComponent implements OnInit {
 
     constructor(public dialogRef: MatDialogRef<AddFileComponent>,
                 private fb: FormBuilder,
+                public fileService: FileService,
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
         this.addFileForm = this.fb.group ({
-            file : null
+            file : null,
+            folder : 'null'
         })
     }
 
@@ -41,8 +45,16 @@ export class AddFileComponent implements OnInit {
     save() {
         const formModel = this.prepareSave()
         this.loading = true
-        console.log('service')
+        let file = formModel.getAll('file')
+        console.log(formModel.getAll('file'), this.addFileForm.get('folder').value)
+        this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe(
+            (data) => this.close(true, file[0].name),
+            (err) => this.close(false, '')
+        )
     }
 
+    close(state: boolean, name: string) {
+        this.dialogRef.close({state : state, name : name});
+    }
 
 }

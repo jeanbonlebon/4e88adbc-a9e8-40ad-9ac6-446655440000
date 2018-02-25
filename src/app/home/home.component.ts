@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
 
         arrayRes.push(this.folderService.get(_id))
         arrayRes.push(this.folderService.getChilds(_id))
+        arrayRes.push(this.fileService.get(_id))
 
         Observable.forkJoin(arrayRes).subscribe(
             (data) => {
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit {
                 isReload == false ? this.setBreadcrump(data[0], isReturn) : null
                 this.folder = data[0]
                 this.folders = data[1]
+                this.files = data[2]
                 this.folderService.actualFolder(this.folder._id)
             },
             (err) => console.error(err)

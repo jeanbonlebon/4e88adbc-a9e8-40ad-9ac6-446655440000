@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from "rxjs";
 import { Observable } from 'rxjs/Observable';
+
+import { appConfig } from '../app.config';
 
 declare const FB:any;
 
@@ -10,20 +12,18 @@ export class AuthenticationService {
 
     isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     login(email: string, password: string) {
-        return this.http.post('/auth/login', { email: email, password: password })
-            .map((response: Response) => {
-                let user = response.json();
+        return this.http.post<any>(appConfig.apiUrl + '/auth/login', { email: email, password: password })
+            .map(user => {
                 if (user && user.token) {
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    console.log(JSON.parse(localStorage.getItem('currentUser')));
-                    this.isLoginSubject.next(true);
+                    localStorage.setItem('currentUser', JSON.stringify(user))
+                    this.isLoginSubject.next(true)
                 }
 
-                return user;
-            });
+                return user
+            })
     }
 
     loginFacebook() {
@@ -32,28 +32,27 @@ export class AuthenticationService {
         return new Promise((resolve, reject) => {
             FB.login(result => {
                 if (result.authResponse) {
-                    return this.http.post(`/auth/facebook`, {access_token: result.authResponse.accessToken})
+                    return this.http.post<any>(appConfig.apiUrl + `/auth/facebook`, {access_token: result.authResponse.accessToken})
                     .toPromise()
-                    .then(response => {
-                        let user = response.json()
+                    .then(user => {
                         if (user && user.token) {
                             localStorage.setItem('currentUser', JSON.stringify(user))
                             console.log(JSON.parse(localStorage.getItem('currentUser')))
                             this.isLoginSubject.next(true)
                         }
-                        resolve(response.json())
+                        resolve(user)
                     })
                     .catch(() => reject())
                 } else {
-                    reject();
+                    reject()
                 }
             }, {scope: 'public_profile, email' })
         })
     }
 
     logout() {
-        localStorage.removeItem('currentUser');
-        this.isLoginSubject.next(false);
+        localStorage.removeItem('currentUser')
+        this.isLoginSubject.next(false)
     }
 
     checkUser() {
@@ -61,11 +60,11 @@ export class AuthenticationService {
     }
 
     private hasToken() : boolean {
-        return !!localStorage.getItem('currentUser');
+        return !!localStorage.getItem('currentUser')
     }
 
     isLoggedIn() : Observable<boolean> {
-        return this.isLoginSubject.asObservable();
+        return this.isLoginSubject.asObservable()
     }
 
 }
