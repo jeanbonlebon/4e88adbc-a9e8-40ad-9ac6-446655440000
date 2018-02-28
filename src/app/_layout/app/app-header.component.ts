@@ -36,7 +36,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         this.folder = this.folderService.thisFolder
         let dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 this.folderService.reload(this.folder)
                 this.alertService.alert.next('Dossier ' + result.name + ' creer')
             }
@@ -47,7 +47,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
         this.folder = this.folderService.thisFolder
         let dialogRef = this.dialog.open(AddFileComponent, { panelClass : 'dialogClass', data : this.folder })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 this.folderService.reload(this.folder)
                 this.alertService.alert.next('Le fichier ' + result.name + ' à bien été uploader')
             }

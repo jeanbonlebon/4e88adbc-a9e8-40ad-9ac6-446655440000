@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
-import { FolderService } from '../../_services/_index';
+import { FolderService, FileService } from '../../_services/_index';
 
 @Component({
     selector: 'delete-component',
@@ -15,13 +15,25 @@ export class DeleteComponent {
     constructor(public dialogRef: MatDialogRef<DeleteComponent>,
                 private fb: FormBuilder,
                 private folderService: FolderService,
+                private fileService: FileService,
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     delete() {
-        this.folderService.delete(this.data._id).subscribe(
-            (data) => this.close(true, this.data.name),
-            (err) => this.close(false, '')
-        )
+        if(this.data.type == 'folder') {
+
+            this.folderService.delete(this.data.data._id).subscribe(
+                (data) => this.close(true, this.data.data.name),
+                (err) => this.close(false, '')
+            )
+
+        } else {
+
+            this.fileService.delete(this.data.data._id).subscribe(
+                (data) => this.close(true, this.data.data.name),
+                (err) => this.close(false, '')
+            )
+
+        }
     }
 
     close(state: boolean, name: string) {

@@ -3,6 +3,7 @@ export class File {
     name: string;
     path?: any;
     user?: any;
+    type?: string;
     parent?: any;
     parents?: any;
     updatedAt?: any;

@@ -1,5 +1,6 @@
-<p>Etes-vous sûr de vouloir supprimer ce dossier ?</p>
+<p *ngIf="data.type == 'folder'">Etes-vous sûr de vouloir supprimer ce dossier ?</p>
+<p *ngIf="data.type == 'file'">Etes-vous sûr de vouloir supprimer ce fichier ?</p>
 <div class="formActions">
     <button mat-button (click)="delete()" type="submit">Oui</button>
-    <button mat-button (click)="close()" type="button">Non</button>
+    <button mat-button (click)="close(false, '')" type="button">Non</button>
 </div>

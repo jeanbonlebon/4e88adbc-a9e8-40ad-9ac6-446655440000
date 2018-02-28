@@ -1,12 +1,19 @@
 <form [formGroup]="addFileForm" (ngSubmit)="save(addFileForm)">
 
-
-    <label for="file">Avatar</label>
+    <label for="file">Fichier</label>
     <input type="file" id="file" (change)="onFileChange($event)" #fileInput>
+
+    <section class="isNewName">
+       <mat-checkbox [(ngModel)]="isNewName" formControlName="wantName">Voulez-vous renommer le fichier ?</mat-checkbox>
+    </section>
+
+    <mat-form-field *ngIf="isNewName" class="fullInput">
+        <input matInput formControlName="name" placeholder="Nom du fichier">
+    </mat-form-field>
 
     <div class="formActions">
         <button mat-button type="submit" [disabled]="addFileForm.invalid || loading">Ajouter le fichier</button>
-        <button mat-button type="button" (click)="close(false)">Annuler</button>
+        <button mat-button type="button" (click)="close(false, '')">Annuler</button>
     </div>
 
 </form>

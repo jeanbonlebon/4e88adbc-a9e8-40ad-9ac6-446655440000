@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
@@ -15,6 +16,8 @@ export class AddFileComponent implements OnInit {
     addFileForm: FormGroup;
     loading: boolean = false;
 
+    isNewName = false;
+
     @ViewChild('fileInput') fileInput: ElementRef;
 
     constructor(public dialogRef: MatDialogRef<AddFileComponent>,
@@ -25,7 +28,9 @@ export class AddFileComponent implements OnInit {
     ngOnInit() {
         this.addFileForm = this.fb.group ({
             file : null,
-            folder : 'null'
+            folder : this.data,
+            wantName : false,
+            name : ''
         })
     }
 
@@ -38,7 +43,16 @@ export class AddFileComponent implements OnInit {
 
     private prepareSave(): any {
         let input = new FormData()
-        input.append('file', this.addFileForm.get('file').value)
+        let file = this.addFileForm.get('file').value
+
+        console.log(this.addFileForm.get('file.name').value)
+/*
+        if(this.addFileForm.get('name').value != '' && this.isNewName == true) {
+            let extension = file.name.split('.')
+            file.name = this.addFileForm.get('name').value + '.' + extension[extension.length - 1]
+        }
+*/
+        input.append('file', file)
         return input
     }
 
@@ -46,11 +60,36 @@ export class AddFileComponent implements OnInit {
         const formModel = this.prepareSave()
         this.loading = true
         let file = formModel.getAll('file')
-        console.log(formModel.getAll('file'), this.addFileForm.get('folder').value)
-        this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe(
-            (data) => this.close(true, file[0].name),
-            (err) => this.close(false, '')
-        )
+
+        console.log(file)
+        /*
+        //console.log(file[0].size)
+        //console.log(formModel.getAll('file'), this.addFileForm.get('folder').value)
+
+        this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe((event: HttpEvent<any>) => {
+          switch (event.type) {
+            case HttpEventType.Sent:
+              console.log('Request sent!');
+              break;
+            case HttpEventType.ResponseHeader:
+              this.close(true, file[0].name)
+              break;
+            case HttpEventType.DownloadProgress:
+              //const kbLoaded = Math.round(event.loaded / 1024);
+              //console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
+              //const percentDone = Math.round(100 * event.loaded / event.total);
+              //console.log(`File is ${percentDone}% uploaded.`);
+              break;
+            case HttpEventType.UploadProgress:
+              //const kbUploaded = Math.round(event.loaded / 1024);
+              //console.log(`Download in progress! ${ kbUploaded }Kb uploaded`);
+              const percentDone = Math.round(100 * event.loaded / event.total);
+              console.log(`File is ${percentDone}% uploaded.`);
+            case HttpEventType.Response:
+              //console.log('😺 Done!');
+          }
+        })
+        */
     }
 
     close(state: boolean, name: string) {

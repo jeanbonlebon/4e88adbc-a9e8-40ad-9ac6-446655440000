@@ -1,13 +1,13 @@
 <form [formGroup]="addFolderForm" (ngSubmit)="save(addFolderForm)">
 
-    <mat-form-field>
+    <mat-form-field class="fullInput">
         <input matInput formControlName="name" placeholder="Nom du dossier" required>
         <mat-error *ngIf="addFolderForm.controls.name.hasError('required')">Un nom de dossier est requis</mat-error>
     </mat-form-field>
 
     <div class="formActions">
         <button mat-button type="submit" [disabled]="addFolderForm.invalid">Creer le dossier</button>
-        <button mat-button type="button" (click)="close(false)">Annuler</button>
+        <button mat-button type="button" (click)="close(false, '')">Annuler</button>
     </div>
 
 </form>

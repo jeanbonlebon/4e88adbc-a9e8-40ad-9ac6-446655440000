@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Rx';
 
-import { Folder } from '../_models/folder';
+import { Folder, File } from '../_models/_index';
 
 import { FolderService, FileService, AlertService } from '../_services/_index';
 
@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
             (data) => {
                 this.folders = data[0]
                 this.files = data[1]
+                this.files.forEach(file => this.setType(file))
                 this.folder = {}
                 this.breadcrump = []
                 Object.keys(this.folders).length === 0 ? this.emptyFolders = true : this.emptyFolders = false
@@ -68,6 +69,7 @@ export class HomeComponent implements OnInit {
                 this.folder = data[0]
                 this.folders = data[1]
                 this.files = data[2]
+                this.files.forEach(file => this.setType(file))
                 this.folderService.actualFolder(this.folder._id)
             },
             (err) => console.error(err)
@@ -82,6 +84,32 @@ export class HomeComponent implements OnInit {
             this.breadcrump = newBreadcrump
         } else {
             this.breadcrump.push(folder)
+        }
+    }
+
+    private setType(file: File) {
+        switch (file.type) {
+          case 'video/avi' || 'video/wma' || 'video/mov' || 'video/wma' || 'video/mp4' || 'video/rmvb':
+            file.type = 'video_library'
+            break;
+          case 'images/jpeg' || 'images/bmp' || 'images/tiff' || 'images/gif' || 'images/png':
+            file.type = 'photo_library'
+            break;
+          case  'audio/mp3' || 'audio/wav' || 'audio/wma' || 'audio/webm' || 'audio/flac':
+            file.type = 'library_music'
+            break;
+          case 'application/pdf':
+            file.type = 'picture_as_pdf'
+            break;
+          case  'application/msword':
+            file.type = 'library_books'
+            break;
+          case  'application/zip' || 'application/rar':
+            file.type = 'archive'
+            break;
+          default:
+            file.type = 'insert_drive_file'
+            break;
         }
     }
 
@@ -103,8 +131,8 @@ export class HomeComponent implements OnInit {
         })
     }
 
-    public delete(data) {
-        let dialogRef = this.dialog.open(DeleteComponent, { panelClass : 'dialogClass', data : data })
+    public delete(data: any, type: string) {
+        let dialogRef = this.dialog.open(DeleteComponent, { panelClass : 'dialogClass', data : { data : data, type : type } })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {
                 this.realodAfterAction('Le dossier ' + result.name + ' à bien été supprimé')
@@ -116,7 +144,7 @@ export class HomeComponent implements OnInit {
         this.folder = this.folderService.thisFolder
         let dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder })
         dialogRef.afterClosed().subscribe(result => {
-            if(result.state == true) {
+            if(result && result.state == true) {
                 this.realodAfterAction('Dossier ' + result.name + ' creer')
             }
         })
