@@ -14,7 +14,7 @@ const maxStorage = 4026531840;
 export class ProfileComponent {
 
     user: User;
-    myStorage: number = 60;
+    myStorage: number;
     dataLoaded: boolean = false;
 
     constructor(private userService: UserService) {
@@ -25,7 +25,7 @@ export class ProfileComponent {
         this.userService.get().subscribe(
             (data) => {
                 this.user = this.buildUser(data)
-                //this.myStorage = (maxStorage-this.user.space_available)*100/this.user.space_available
+                this.myStorage = (maxStorage-this.user.space_available)*100/this.user.space_available
                 this.dataLoaded = true
                 console.log(this.myStorage)
             },

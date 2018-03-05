@@ -43,16 +43,16 @@ export class AddFileComponent implements OnInit {
 
     private prepareSave(): any {
         let input = new FormData()
-        let file = this.addFileForm.get('file').value
+        let file = this.addFileForm.value.file
 
-        console.log(this.addFileForm.get('file.name').value)
-/*
         if(this.addFileForm.get('name').value != '' && this.isNewName == true) {
             let extension = file.name.split('.')
-            file.name = this.addFileForm.get('name').value + '.' + extension[extension.length - 1]
+            let newName = this.addFileForm.get('name').value + '.' + extension[extension.length - 1]
+            input.set('file', file, newName)
+        } else {
+            input.set('file', file)
         }
-*/
-        input.append('file', file)
+
         return input
     }
 
@@ -60,11 +60,6 @@ export class AddFileComponent implements OnInit {
         const formModel = this.prepareSave()
         this.loading = true
         let file = formModel.getAll('file')
-
-        console.log(file)
-        /*
-        //console.log(file[0].size)
-        //console.log(formModel.getAll('file'), this.addFileForm.get('folder').value)
 
         this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe((event: HttpEvent<any>) => {
           switch (event.type) {
@@ -77,8 +72,6 @@ export class AddFileComponent implements OnInit {
             case HttpEventType.DownloadProgress:
               //const kbLoaded = Math.round(event.loaded / 1024);
               //console.log(`Download in progress! ${ kbLoaded }Kb loaded`);
-              //const percentDone = Math.round(100 * event.loaded / event.total);
-              //console.log(`File is ${percentDone}% uploaded.`);
               break;
             case HttpEventType.UploadProgress:
               //const kbUploaded = Math.round(event.loaded / 1024);
@@ -89,7 +82,7 @@ export class AddFileComponent implements OnInit {
               //console.log('😺 Done!');
           }
         })
-        */
+
     }
 
     close(state: boolean, name: string) {
