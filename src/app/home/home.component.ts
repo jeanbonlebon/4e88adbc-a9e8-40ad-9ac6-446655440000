@@ -107,7 +107,7 @@ export class HomeComponent implements OnInit {
         })
     }
 
-    public move(data) {
+    public move(data: any, type: string) {
         let dialogRef = this.dialog.open(MoveComponent, { panelClass : 'dialogClass', data : { data : data, type : type } })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {

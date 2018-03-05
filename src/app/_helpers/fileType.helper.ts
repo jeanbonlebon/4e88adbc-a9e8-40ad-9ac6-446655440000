@@ -36,6 +36,7 @@ export class FileType {
           file.type = 'library_books'
           break;
         case 'application/zip' :
+        case 'application/x-zip-compressed' :
         case 'application/rar' :
           file.type = 'archive'
           break;

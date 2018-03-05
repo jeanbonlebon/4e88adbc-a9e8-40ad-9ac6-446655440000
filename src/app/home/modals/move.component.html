@@ -8,6 +8,13 @@
     </div>
 </div>
 <ul id="moveList">
+    <li *ngIf='isRoot'>
+        <button mat-button
+                class="itemList"
+                [ngClass]="{'isActived' : rootActive }"
+                (click)="selectedFolder('null')">
+        Mon SupFile</button>
+    </li>
     <li *ngFor="let folder of folders">
         <button mat-button
                 class="itemList"

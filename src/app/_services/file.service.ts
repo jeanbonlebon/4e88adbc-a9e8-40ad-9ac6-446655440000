@@ -18,6 +18,14 @@ export class FileService {
         return this.http.request(new HttpRequest('POST', appConfig.apiUrl + '/file/' + folder_id, file, { reportProgress: true }))
     }
 
+    move(_id: any, folder: any) {
+        return this.http.put(appConfig.apiUrl + '/file/move/' + _id, folder)
+    }
+
+    rename(_id: any, name: any) {
+        return this.http.put(appConfig.apiUrl + '/file/rename/' + _id, name)
+    }
+
     delete(_id: any) {
         return this.http.delete(appConfig.apiUrl + '/file/' + _id)
     }

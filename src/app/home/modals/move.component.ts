@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 
 import { Folder } from '../../_models/folder';
 
-import { FolderService } from '../../_services/_index';
+import { FolderService, FileService } from '../../_services/_index';
 
 @Component({
     selector: 'move-component',
@@ -19,12 +19,14 @@ export class MoveComponent {
 
     isRoot: boolean = true;
     isEmpty: boolean;
+    rootActive: boolean = false;
 
     isDisabled = false;
 
     constructor(public dialogRef: MatDialogRef<MoveComponent>,
                 private fb: FormBuilder,
                 private folderService: FolderService,
+                private fileService: FileService,
                 @Inject(MAT_DIALOG_DATA) public data: any) { this.getDatasRoot(null) }
 
 
@@ -32,7 +34,6 @@ export class MoveComponent {
         this.folderService.getChilds(parent).subscribe(
             (data) => {
                 this.folders = data
-                console.log(this.folders)
                 data.length == 0 ? this.isEmpty = true : this.isEmpty = false
                 parent == null ? this.isRoot = true : this.isRoot = false
                 this.isDisabled = true
@@ -42,23 +43,36 @@ export class MoveComponent {
     }
 
     public selectedFolder(folder) {
+        if(folder == 'null') {
+            this.toFolder ? this.toFolder.active = false : null
+            this.rootActive = true
+            this.toFolder = null
+        } else {
+            this.rootActive = false
+            this.toFolder ? this.toFolder.active = false : null
+            folder.active = true
+            this.toFolder = folder
+        }
         this.isDisabled = false
-        this.toFolder ? this.toFolder.active = false : null
-        folder.active = true
-        this.toFolder = folder
     }
 
     public move() {
-        console.log(this.data._id, this.toFolder._id)
+        let moveTo; this.toFolder == null ? moveTo = 'null' : moveTo = this.toFolder._id
+
         if(this.data.type == 'folder') {
 
-          this.folderService.move(this.data.data._id, {folder : this.toFolder._id}).subscribe(
-            (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été déplacé dans le dossier ' + this.toFolder.name),
+          this.folderService.move(this.data.data._id, {folder : moveTo}).subscribe(
+            (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été déplacé'),
             (err) => this.close(false, '')
           )
 
         } else {
-          console.log('move file')
+
+          this.fileService.move(this.data.data._id, {folder : moveTo}).subscribe(
+            (data) => this.close(true, 'Le fichier ' + this.data.data.name + ' à bien été déplacé'),
+            (err) => this.close(false, '')
+          )
+
         }
 
     }
