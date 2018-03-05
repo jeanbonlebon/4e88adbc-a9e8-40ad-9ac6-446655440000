@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './app.material';
 import { AppComponent } from './app.component';
 
-import { TokenInterceptorProvider, ErrorInterceptorProvider } from './_helpers/_index';
+import { TokenInterceptorProvider, ErrorInterceptorProvider, FileType } from './_helpers/_index';
 import { Router } from './app.routing';
 
 import { AuthGuard } from './_guards/_index';
@@ -61,6 +61,7 @@ import 'rxjs/add/observable/forkJoin'
   providers: [
     TokenInterceptorProvider,
     ErrorInterceptorProvider,
+    FileType,
     AuthGuard,
     AuthenticationService,
     AlertService,

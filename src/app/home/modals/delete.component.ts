@@ -22,14 +22,14 @@ export class DeleteComponent {
         if(this.data.type == 'folder') {
 
             this.folderService.delete(this.data.data._id).subscribe(
-                (data) => this.close(true, this.data.data.name),
+                (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été supprimé'),
                 (err) => this.close(false, '')
             )
 
         } else {
 
             this.fileService.delete(this.data.data._id).subscribe(
-                (data) => this.close(true, this.data.data.name),
+                (data) => this.close(true, 'Le fichier ' + this.data.data.name + ' à bien été supprimé'),
                 (err) => this.close(false, '')
             )
 

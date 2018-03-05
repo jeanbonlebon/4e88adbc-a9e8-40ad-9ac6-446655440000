@@ -50,10 +50,17 @@ export class MoveComponent {
 
     public move() {
         console.log(this.data._id, this.toFolder._id)
-        this.folderService.move(this.data._id, {folder : this.toFolder._id}).subscribe(
-          (data) => this.close(true, 'Le dossier ' + this.data.name + ' à bien été déplacé dans le dossier ' + this.toFolder.name),
-          (err) => this.close(false, '')
-        )
+        if(this.data.type == 'folder') {
+
+          this.folderService.move(this.data.data._id, {folder : this.toFolder._id}).subscribe(
+            (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été déplacé dans le dossier ' + this.toFolder.name),
+            (err) => this.close(false, '')
+          )
+
+        } else {
+          console.log('move file')
+        }
+
     }
 
     public close(state: boolean, name: string) {

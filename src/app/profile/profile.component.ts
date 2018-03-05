@@ -25,7 +25,7 @@ export class ProfileComponent {
         this.userService.get().subscribe(
             (data) => {
                 this.user = this.buildUser(data)
-                this.myStorage = (maxStorage-this.user.space_available)*100/this.user.space_available
+                this.myStorage = Math.round((this.user.space_available/maxStorage)*100)
                 this.dataLoaded = true
                 console.log(this.myStorage)
             },
