@@ -1,4 +1,4 @@
-<form [formGroup]="addFileForm" (ngSubmit)="save(addFileForm)">
+<form [formGroup]="addFileForm" (ngSubmit)="save()">
 
     <label for="file">Fichier</label>
     <input type="file" id="file" (change)="onFileChange($event)" #fileInput>

@@ -1,3 +1,31 @@
+.dialogFilePdf {
+    width: 748px;
+    height: 80%;
+    padding: 0;
+}
+.dialogFileVideo {
+    width: 748px;
+    padding: 0;
+}
+.dialogFileImg {
+    width: 748px;
+    padding: 0;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.file_container {
+    vg-player {
+        width: 700px !important;
+        margin: 0 auto !important;
+    }
+    pdf-viewer {
+        max-width: 100%;
+        display:block;
+    }
+}
 .dialogClass {
     width: 360px;
 }

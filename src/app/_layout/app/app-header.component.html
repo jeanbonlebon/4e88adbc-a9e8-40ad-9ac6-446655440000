@@ -4,9 +4,6 @@
         <li><a href="#"><h1>Sup<span>File</span></h1></a></li>
     </ul>
     <ul fxFlex="60%" class="navRight">
-        <li *ngIf='isMainRoute' matTooltip="Application" matTooltipPosition="below">
-            <button mat-button [routerLink]="['../app']"><mat-icon color="primary">apps</mat-icon></button>
-        </li>
         <li *ngIf='!isMainRoute' matTooltip="Ajouter un dossier" matTooltipPosition="below"> <!--  -->
             <button mat-button (click)='addFolder()'><mat-icon color="primary">create_new_folder</mat-icon></button>
         </li>
@@ -16,7 +13,10 @@
         <li matTooltip="Recherche" matTooltipPosition="below">
             <button mat-button><mat-icon color="primary">search</mat-icon></button>
         </li>
-        <li matTooltip="Mon Profil" matTooltipPosition="below">
+        <li *ngIf='isMainRoute' matTooltip="Application" matTooltipPosition="below">
+            <button mat-button [routerLink]="['../app']"><mat-icon color="primary">apps</mat-icon></button>
+        </li>
+        <li *ngIf='!isMainRoute' matTooltip="Mon Profil" matTooltipPosition="below">
             <button mat-button routerLink="profile"><mat-icon color="primary">face</mat-icon></button>
         </li>
     </ul>

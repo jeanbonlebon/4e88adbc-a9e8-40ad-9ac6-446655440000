@@ -13,3 +13,45 @@
         }
     }
 }
+
+#selectLayout {
+    text-align: center;
+    button {
+      padding: 0;
+      min-width: 36px;
+    }
+}
+.container .list-container.grid{
+    width: 25%;
+    position: relative;
+    button.list-line {
+        padding: 30px 0px;
+        .mat-icon {
+          width: 45px;
+          height: 45px;
+          font-size: 45px;
+        }
+        span.mat-button-wrapper {
+            flex-direction: column !important;
+            .icon-line {
+                max-width: 100% !important;
+            }
+            .text-line {
+                text-align: center !important;
+                max-width: 100% !important;
+                p {
+                    margin: 0 !important;
+                }
+            }
+        }
+    }
+    .actions {
+      position: absolute;
+      bottom: 0;
+      right: 44px;
+      button {
+        min-width: 70px;
+        height: 60px;
+      }
+    }
+}

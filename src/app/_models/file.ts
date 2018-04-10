@@ -4,6 +4,7 @@ export class File {
     path?: any;
     user?: any;
     type?: string;
+    logoType?: string;
     parent?: any;
     parents?: any;
     updatedAt?: any;

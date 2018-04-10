@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Rx';
 
-import { FileType } from '../_helpers/_index';
+import { saveAs } from 'file-saver';
+
+import { FileType, LinkConstructor } from '../_helpers/_index';
 
 import { Folder, File } from '../_models/_index';
 
 import { FolderService, FileService, AlertService } from '../_services/_index';
 
-import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent } from './modals/_index';
+import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent, WatchFileComponent } from './modals/_index';
 
 @Component({
     selector: 'home',
@@ -18,13 +21,17 @@ import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent } f
 export class HomeComponent implements OnInit {
     folder : any = {};
     folders : any;
-    files: any;
+    files : any;
     emptyFolders : boolean;
     breadcrump : any = [];
+
+    layoutGrid : boolean = false;
 
     constructor(private folderService: FolderService,
                 private fileService: FileService,
                 private fileType: FileType,
+                private linkConstructor: LinkConstructor,
+                private router: Router,
                 public dialog: MatDialog,
                 private alertService: AlertService) {
         this.getDatasRoot()
@@ -98,11 +105,34 @@ export class HomeComponent implements OnInit {
         return false
     }
 
-    public rename(data) {
-        let dialogRef = this.dialog.open(RenameComponent, { panelClass : 'dialogClass', data : data })
+    public setLayout(isGrid: boolean) {
+        isGrid == true ? this.layoutGrid = true : this.layoutGrid = false
+        this.realodAfterAction(null)
+    }
+
+    public display(file: File) {
+        let type = this.fileType.checkFileType(file)
+        switch (type) {
+          case 'image' :
+            this.dialog.open(WatchFileComponent, { panelClass : 'dialogFileImg', data : { data : file, type : type } })
+            break;
+          case 'video' :
+            this.dialog.open(WatchFileComponent, { panelClass : 'dialogFileVideo', data : { data : file, type : type } })
+            break;
+          case 'pdf' :
+            this.dialog.open(WatchFileComponent, { panelClass : 'dialogFilePdf', data : { data : file, type : type } })
+            break;
+          default:
+            this.download(file)
+            break;
+        }
+    }
+
+    public rename(data: any, type: string) {
+        let dialogRef = this.dialog.open(RenameComponent, { panelClass : 'dialogClass', data : { data : data, type : type } })
         dialogRef.afterClosed().subscribe(result => {
             if(result && result.state == true) {
-                this.realodAfterAction('Le dossier à bien été renommé')
+                this.realodAfterAction('Le ' + result.name + ' à bien été renommé')
             }
         })
     }
@@ -114,6 +144,16 @@ export class HomeComponent implements OnInit {
                 this.realodAfterAction(result.name)
             }
         })
+    }
+
+    public download(file: File) {
+      this.fileService.download(file._id).subscribe(
+          (data) => {
+              let blob = new Blob([data], { type: file.type })
+              saveAs(blob, file.name)
+          },
+          (err) => console.error(err)
+       )
     }
 
     public delete(data: any, type: string) {
@@ -137,6 +177,8 @@ export class HomeComponent implements OnInit {
 
     private realodAfterAction(message: string) {
         Object.keys(this.folder).length === 0 ? this.getDatasRoot() : this.getDatas(this.folder._id , false, true)
-        this.alertService.alert.next(message)
+        if(message) {
+            this.alertService.alert.next(message)
+        }
     }
 }

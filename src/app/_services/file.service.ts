@@ -13,8 +13,11 @@ export class FileService {
         return this.http.get<File[]>(appConfig.apiUrl + '/file/' + folder_id)
     }
 
+    getOne(_id: any) {
+        return this.http.get<File>(appConfig.apiUrl + '/file/one/' + _id)
+    }
+
     create(file: any, folder_id: any) {
-        //return this.http.post(appConfig.apiUrl + '/file/' + folder_id, file);
         return this.http.request(new HttpRequest('POST', appConfig.apiUrl + '/file/' + folder_id, file, { reportProgress: true }))
     }
 
@@ -24,6 +27,10 @@ export class FileService {
 
     rename(_id: any, name: any) {
         return this.http.put(appConfig.apiUrl + '/file/rename/' + _id, name)
+    }
+
+    download(_id: string) {
+        return this.http.get(appConfig.apiUrl + '/file/download/' + _id, { responseType: 'arraybuffer' })
     }
 
     delete(_id: any) {

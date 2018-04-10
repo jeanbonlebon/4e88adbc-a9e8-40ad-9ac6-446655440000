@@ -7,6 +7,7 @@ import { SiteLayoutComponent } from './_layout/site/site-layout.component';
 
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
+import { FilesComponent } from './home/files/_index';
 import { LandingComponent } from './landing/_index';
 import { ProfileComponent } from './profile/_index';
 
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
     },
 
     { path: 'login', component: LoginComponent},
+    { path: 'file/:id', component: FilesComponent},
     //{ path: 'register', component: RegisterComponent },
 
 ];

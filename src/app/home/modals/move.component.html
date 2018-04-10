@@ -1,4 +1,4 @@
-<div id="moveBreacrump" fxLayout="row wrap" fxLayoutAlign="start center" class="list-head" *ngIf="!emptyFolders"> <!-- fxLayoutGap="10px" -->
+<div id="moveBreacrump" fxLayout="row wrap" fxLayoutAlign="start center" class="list-head"> <!-- *ngIf="!emptyFolders" fxLayoutGap="10px" -->
     <div fxFlex="20%">
         <button *ngIf='!isRoot' mat-button (click)="getDatasRoot(null, false)" class="returnButton"><mat-icon color="primary">keyboard_arrow_left</mat-icon></button>
     </div>

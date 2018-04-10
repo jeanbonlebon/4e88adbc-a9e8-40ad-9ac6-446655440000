@@ -10,14 +10,17 @@
 
     <div fxLayout="row wrap" fxLayoutAlign="start center" class="list-head" *ngIf="!emptyFolders"> <!-- fxLayoutGap="10px" -->
         <div fxFlex="10%"></div>
-        <div fxFlex="35%">Nom</div>
-        <div fxFlex="40%">Modifications</div>
-        <div fxFlex="10%"></div>
+        <div fxFlex="35%"><span *ngIf="!layoutGrid">Nom</span></div>
+        <div fxFlex="45%"><span *ngIf="!layoutGrid">Modifications</span></div>
+        <div fxFlex="10%" id="selectLayout">
+            <button mat-button (click)="setLayout(true)" *ngIf="!layoutGrid"><mat-icon color="primary">apps</mat-icon></button>
+            <button mat-button (click)="setLayout(false)" *ngIf="layoutGrid"><mat-icon color="primary">view_list</mat-icon></button>
+        </div>
     </div>
 
     <div fxLayout="row wrap" fxLayoutAlign="start center"> <!-- *ngIf="!emptyFolders" -->
 
-        <mat-list-item class="list-container" *ngFor="let folder of folders">
+        <mat-list-item class="list-container" *ngFor="let folder of folders" [ngClass]="{ 'grid' : layoutGrid }">
 
             <button mat-button class="list-line" (click)="getDatas(folder._id, false, false)">
                 <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon>folder</mat-icon></div>
@@ -30,7 +33,7 @@
 
 
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
-                <button mat-menu-item (click)="rename(folder)"><mat-icon>edit</mat-icon>Renommer</button>
+                <button mat-menu-item (click)="rename(folder, 'folder')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(folder, 'folder')"><mat-icon>close</mat-icon>Supprimer</button>
                 <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(folder, 'folder')"><mat-icon>redo</mat-icon>Déplacer</button>
@@ -39,10 +42,10 @@
 
         </mat-list-item>
 
-        <mat-list-item class="list-container" *ngFor="let file of files">
+        <mat-list-item class="list-container" *ngFor="let file of files" [ngClass]="{ 'grid' : layoutGrid }">
 
-            <button mat-button class="list-line">
-                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon> {{file.type}} </mat-icon></div>
+            <button mat-button class="list-line" (click)="display(file)">
+                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon> {{file.logoType}} </mat-icon></div>
                 <div fxFlex="40%" class="text-line"><h4 mat-line> {{file.name}} </h4></div>
                 <div fxFlex="40%" class="text-line"><p mat-line> {{file.updatedAt | date}} </p></div>
             </button>
@@ -52,9 +55,9 @@
 
 
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
-                <button mat-menu-item (click)="rename(folder)"><mat-icon>edit</mat-icon>Renommer</button>
+                <button mat-menu-item (click)="rename(file, 'file')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(file, 'file')"><mat-icon>close</mat-icon>Supprimer</button>
-                <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
+                <button mat-menu-item (click)="download(file)"><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(file, 'file')"><mat-icon>redo</mat-icon>Déplacer</button>
                 <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
             </mat-menu>

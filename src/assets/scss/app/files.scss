@@ -1,0 +1,27 @@
+#returnApp {
+    position: absolute;
+    list-style-type: none;
+    top: 15px;
+    left: 15px;
+    mat-icon {
+      font-size: 45px;
+      height: 45px;
+      width: 45px;
+    }
+}
+.file_container {
+    //width: 900px;
+    img {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+vg-player {
+   width: 70% !important;
+   margin: 0 auto !important;
+   video {
+     //height: 487px !important;
+     //margin: 0 auto !important;
+  }
+}
