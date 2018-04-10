@@ -13,6 +13,7 @@ import { TokenInterceptorProvider, ErrorInterceptorProvider, FileType, LinkConst
 import { Router } from './app.routing';
 
 import { AuthGuard } from './_guards/_index';
+import { UploadComponent } from './_directives/_index';
 import { AuthenticationService, AlertService, FolderService, FileService, UserService, RouterService } from './_services/_index';
 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
@@ -42,6 +43,7 @@ import 'rxjs/add/observable/forkJoin'
     SiteLayoutComponent,
     LandingComponent,
     ProfileComponent,
+    UploadComponent,
     HomeComponent,
     FilesComponent,
     RenameComponent,

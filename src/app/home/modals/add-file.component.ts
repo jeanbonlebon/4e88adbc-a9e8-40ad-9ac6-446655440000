@@ -60,7 +60,12 @@ export class AddFileComponent implements OnInit {
         const formModel = this.prepareSave()
         this.loading = true
         let file = formModel.getAll('file')
+        console.log(formModel, this.addFileForm.get('folder').value)
+        this.fileService.startUpload(formModel, this.addFileForm.get('folder').value, file[0].name)
+        this.close(false, '')
+        //this.close(true, file[0].name)
 
+/*
         this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe((event: HttpEvent<any>) => {
           switch (event.type) {
             case HttpEventType.Sent:
@@ -82,7 +87,7 @@ export class AddFileComponent implements OnInit {
               //console.log('😺 Done!');
           }
         })
-
+*/
     }
 
     close(state: boolean, name: string) {

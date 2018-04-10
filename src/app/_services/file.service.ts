@@ -1,13 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+
 import { appConfig } from '../app.config';
 
-import { File } from '../_models/file';
+import { File, UploadToast } from '../_models/file';
 
 @Injectable()
 export class FileService {
 
+    private subject = new Subject<any>();
+
     constructor(private http: HttpClient) { }
+
+    getAlert(): Observable<any> {
+        return this.subject.asObservable()
+    }
+
+    startUpload(file: any, folder_id: any, name: string) {
+        this.subject.next(<UploadToast>{ file: file, folder_id: folder_id, name: name })
+    }
 
     get(folder_id: any) {
         return this.http.get<File[]>(appConfig.apiUrl + '/file/' + folder_id)

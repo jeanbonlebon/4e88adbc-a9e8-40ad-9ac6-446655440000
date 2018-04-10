@@ -1,0 +1,28 @@
+#uploadDialog {
+    position: fixed;
+    right: 0;
+    width: 20%;
+    bottom: 0;
+    background-color: #FFF;
+    border: solid 2px #EEE;
+    padding-top: 0;
+    mat-progress-bar {
+        margin: 0 20px;
+        width: 65%;
+    }
+    button {
+        min-width: 40px;
+        padding: 0;
+        margin-left: 10px;
+    }
+    p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+    mat-icon.isDone {
+        color: #EF6C00;
+        font-size: 30px;
+    }
+}

@@ -1,0 +1,11 @@
+<mat-nav-list id="uploadDialog">
+  <mat-list-item *ngFor="let alert of alerts">
+     <div *ngIf="alert.isDone"><mat-icon class="isDone">cloud_done</mat-icon></div>
+     <div *ngIf="!alert.isDone"><mat-spinner [diameter]="35"></mat-spinner></div>
+     <mat-progress-bar mode="determinate" [value]="alert.percentage"></mat-progress-bar>
+     <p>{{alert.name}}</p>
+     <button mat-button (click)="removeUpload(alert)">
+        <mat-icon>close</mat-icon>
+     </button>
+  </mat-list-item>
+</mat-nav-list>
