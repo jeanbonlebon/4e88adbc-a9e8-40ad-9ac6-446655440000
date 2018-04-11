@@ -1,11 +1,31 @@
 <mat-nav-list id="uploadDialog">
   <mat-list-item *ngFor="let alert of alerts">
      <div *ngIf="alert.isDone"><mat-icon class="isDone">cloud_done</mat-icon></div>
-     <div *ngIf="!alert.isDone"><mat-spinner [diameter]="35"></mat-spinner></div>
+     <div *ngIf="!alert.isDone"><mat-spinner [diameter]="30"></mat-spinner></div>
      <mat-progress-bar mode="determinate" [value]="alert.percentage"></mat-progress-bar>
-     <p>{{alert.name}}</p>
+     <div class="filename"><p>{{alert.name}}</p></div>
      <button mat-button (click)="removeUpload(alert)">
         <mat-icon>close</mat-icon>
      </button>
   </mat-list-item>
 </mat-nav-list>
+<!--
+<mat-nav-list id="uploadDialog">
+  <mat-list-item>
+     <div><mat-spinner [diameter]="30"></mat-spinner></div>
+     <mat-progress-bar mode="determinate" [value]="45"></mat-progress-bar>
+     <div class="filename"><p>mon fichier.zip</p></div>
+     <button mat-button >
+        <mat-icon>close</mat-icon>
+     </button>
+  </mat-list-item>
+  <mat-list-item>
+     <div><mat-icon class="isDone">cloud_done</mat-icon></div>
+     <mat-progress-bar mode="determinate" [value]="85"></mat-progress-bar>
+    <div class="filename"><p>supfile.png</p></div>
+     <button mat-button >
+        <mat-icon>close</mat-icon>
+     </button>
+  </mat-list-item>
+</mat-nav-list>
+-->

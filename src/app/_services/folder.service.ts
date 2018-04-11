@@ -47,6 +47,10 @@ export class FolderService {
         return this.http.put(appConfig.apiUrl + '/folder/rename/' + _id, name)
     }
 
+    download(_id: any) {
+        return this.http.get(appConfig.apiUrl + '/folder/download/' + _id, { responseType: 'arraybuffer' })
+    }
+
     delete(_id: string) {
         return this.http.delete(appConfig.apiUrl + '/folder/' + _id)
     }

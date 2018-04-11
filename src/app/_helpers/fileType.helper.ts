@@ -18,7 +18,9 @@ export class FileType {
             file.logoType = 'video_library'
             break;
           case 'images/jpeg' :
+          case 'image/jpeg' :
           case 'images/jpg' :
+          case 'image/jpg' :
           case 'images/bmp' :
           case 'images/tiff' :
           case 'images/gif' :
@@ -65,6 +67,8 @@ export class FileType {
             break;
           case 'images/jpeg' :
           case 'images/jpg' :
+          case 'image/jpeg' :
+          case 'image/jpg' :
           case 'images/png' :
           case 'image/png' :
             type = 'image'

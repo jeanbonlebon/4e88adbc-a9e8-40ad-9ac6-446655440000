@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 
-import { UploadToast } from '../_models/_index';
+import { Toast } from '../_models/_index';
 
 import { FileService, FolderService } from '../_services/_index';
 
@@ -16,12 +16,12 @@ export class UploadComponent implements OnInit {
     constructor(private fileService: FileService, private folderService: FolderService) { }
 
     ngOnInit() {
-        this.fileService.getAlert().subscribe((data: UploadToast) => {
+        this.fileService.getAlert().subscribe((data: Toast) => {
             this.addUpload(data)
         })
     }
 
-    private addUpload(data: UploadToast) {
+    private addUpload(data: Toast) {
 
         data.id = this.alerts.length
         data.percentage = 0
@@ -50,7 +50,7 @@ export class UploadComponent implements OnInit {
 
     }
 
-    removeUpload(alert: UploadToast) {
+    removeUpload(alert: Toast) {
         this.alerts = this.alerts.filter(x => x !== alert);
     }
 }

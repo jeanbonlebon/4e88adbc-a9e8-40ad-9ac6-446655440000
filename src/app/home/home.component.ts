@@ -123,7 +123,7 @@ export class HomeComponent implements OnInit {
             this.dialog.open(WatchFileComponent, { panelClass : 'dialogFilePdf', data : { data : file, type : type } })
             break;
           default:
-            this.download(file)
+            this.downloadFile(file)
             break;
         }
     }
@@ -146,11 +146,22 @@ export class HomeComponent implements OnInit {
         })
     }
 
-    public download(file: File) {
+    public downloadFile(file: File) {
       this.fileService.download(file._id).subscribe(
           (data) => {
               let blob = new Blob([data], { type: file.type })
               saveAs(blob, file.name)
+          },
+          (err) => console.error(err)
+       )
+    }
+
+    public downloadFolder(folder: Folder) {
+      this.folderService.download(folder._id).subscribe(
+          (data) => {
+              console.log(data)
+              let blob = new Blob([data], { type: 'application/x-zip-compressed' })
+              saveAs(blob, folder.name)
           },
           (err) => console.error(err)
        )

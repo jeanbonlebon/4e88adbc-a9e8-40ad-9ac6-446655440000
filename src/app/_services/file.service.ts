@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { appConfig } from '../app.config';
 
-import { File, UploadToast } from '../_models/file';
+import { File, Toast } from '../_models/_index';
 
 @Injectable()
 export class FileService {
@@ -19,7 +19,7 @@ export class FileService {
     }
 
     startUpload(file: any, folder_id: any, name: string) {
-        this.subject.next(<UploadToast>{ file: file, folder_id: folder_id, name: name })
+        this.subject.next(<Toast>{ file: file, folder_id: folder_id, name: name })
     }
 
     get(folder_id: any) {

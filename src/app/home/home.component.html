@@ -35,7 +35,7 @@
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
                 <button mat-menu-item (click)="rename(folder, 'folder')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(folder, 'folder')"><mat-icon>close</mat-icon>Supprimer</button>
-                <button mat-menu-item><mat-icon>file_upload</mat-icon>Télécharger</button>
+                <button mat-menu-item (click)="downloadFolder(folder)"><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(folder, 'folder')"><mat-icon>redo</mat-icon>Déplacer</button>
                 <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
             </mat-menu>
@@ -57,7 +57,7 @@
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
                 <button mat-menu-item (click)="rename(file, 'file')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(file, 'file')"><mat-icon>close</mat-icon>Supprimer</button>
-                <button mat-menu-item (click)="download(file)"><mat-icon>file_upload</mat-icon>Télécharger</button>
+                <button mat-menu-item (click)="downloadFile(file)"><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(file, 'file')"><mat-icon>redo</mat-icon>Déplacer</button>
                 <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
             </mat-menu>

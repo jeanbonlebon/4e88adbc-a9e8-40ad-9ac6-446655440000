@@ -1,4 +1,4 @@
-export class UploadToast {
+export class Toast {
     id?: number;
     name: string;
     isDone?: boolean;
