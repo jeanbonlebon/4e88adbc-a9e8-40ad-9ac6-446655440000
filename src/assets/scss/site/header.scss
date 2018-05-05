@@ -1,0 +1,42 @@
+nav.mainNav {
+    position: fixed;
+    width: 100%;
+    background-color: #FFF;
+    ul {
+        margin: 0;
+        padding: 0;
+        &.right {
+            justify-content: flex-end;
+            display: flex;
+        }
+        img {
+            max-height: 49px;
+            margin-top: 5px;
+        }
+        button {
+            line-height: 60px;
+            .mat-icon {
+                margin-right: 5px;
+                margin-bottom: 2px;
+            }
+            strong {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+section.one {
+    background-image: url('./assets/img/trianglify.svg');
+    width: 100%;
+    padding: 150px 0px 50px 0px;
+    .text-intro {
+        display:block;
+    }
+    h1 {
+    }
+    .center-block {
+        text-align: center;
+        width: 100%;
+    }
+}

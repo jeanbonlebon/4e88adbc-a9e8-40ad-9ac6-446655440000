@@ -1,6 +1,17 @@
-<h1>Site de présentation</h1>
-<h2>A faire plus tard</h2>
+<nav class="mainNav">
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
+        <ul fxFlex="10%">
+            <img src="./assets/img/app_logo.svg" />
+        </ul>
+        <ul fxFlex="70%">
+            <button mat-button>Intro</button>
+            <button mat-button>Equipe</button>
+            <button mat-button>Contact</button>
+        </ul>
+        <ul fxFlex="20%" class="right">
+            <button mat-button><mat-icon>person</mat-icon><strong>Equipe</strong></button>
+        </ul>
+    </div>
+</nav>
 
-<button mat-button [routerLink]="['/login']">Login Page</button>
-
-<landing></landing>
+<landing class="landing"></landing>
