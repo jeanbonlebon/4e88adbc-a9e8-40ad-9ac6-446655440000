@@ -15,7 +15,7 @@ export class FileType {
           case 'video/ogg' :
           case 'video/webm' :
           case 'video/rmvb':
-            file.logoType = 'video_library'
+            file.logoType = 'video_library';
             break;
           case 'images/jpeg' :
           case 'image/jpeg' :
@@ -26,7 +26,7 @@ export class FileType {
           case 'images/gif' :
           case 'images/png' :
           case 'image/png' :
-            file.logoType = 'photo_library'
+            file.logoType = 'photo_library';
             break;
           case 'audio/mp3' :
           case 'audio/wav' :
@@ -34,25 +34,25 @@ export class FileType {
           case 'audio/webm' :
           case 'audio/flac' :
           case 'audio/x-m4a' :
-            file.logoType = 'library_music'
+            file.logoType = 'library_music';
             break;
           case 'application/pdf':
-            file.logoType = 'picture_as_pdf'
+            file.logoType = 'picture_as_pdf';
             break;
           case 'application/msword':
-            file.logoType = 'library_books'
+            file.logoType = 'library_books';
             break;
           case 'application/zip' :
           case 'application/x-zip-compressed' :
           case 'application/rar' :
-            file.logoType = 'archive'
+            file.logoType = 'archive';
             break;
           default:
-            file.logoType = 'insert_drive_file'
+            file.logoType = 'insert_drive_file';
             break;
         }
 
-        return file
+        return file;
     }
 
     checkFileType(file: File) {
@@ -63,7 +63,7 @@ export class FileType {
           case 'video/mp4' :
           case 'video/ogg' :
           case 'video/webm' :
-            type = 'video'
+            type = 'video';
             break;
           case 'images/jpeg' :
           case 'images/jpg' :
@@ -71,17 +71,17 @@ export class FileType {
           case 'image/jpg' :
           case 'images/png' :
           case 'image/png' :
-            type = 'image'
+            type = 'image';
             break;
           case 'application/pdf' :
-            type = 'pdf'
+            type = 'pdf';
             break;
           default:
-            type = 'download'
+            type = 'download';
             break;
         }
 
-        return type
+        return type;
 
     }
 }

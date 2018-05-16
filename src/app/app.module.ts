@@ -20,6 +20,7 @@ import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_
 import { LoginComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { FilesComponent } from './home/files/_index';
+// tslint:disable-next-line:max-line-length
 import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent, AddFileComponent, WatchFileComponent } from './home/modals/_index';
 import { LandingComponent } from './landing/_index';
 import { ProfileComponent } from './profile/_index';
@@ -32,7 +33,7 @@ import { VgBufferingModule } from 'videogular2/buffering';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
-import 'rxjs/add/observable/forkJoin'
+import 'rxjs/add/observable/forkJoin';
 
 @NgModule({
   declarations: [

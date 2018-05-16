@@ -26,36 +26,36 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
                 private alertService: AlertService) { }
 
     ngOnInit() {
-        this.router.url == '/app' ? this.isMainRoute = false : this.isMainRoute = true
+        this.router.url === '/app' ? this.isMainRoute = false : this.isMainRoute = true;
         this.routerSubscription = this.routerService.getRoute().subscribe(data => {
             this.isMainRoute = data;
-        })
+        });
     }
 
     addFolder() {
-        this.folder = this.folderService.thisFolder
-        let dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder })
+        this.folder = this.folderService.thisFolder;
+        const dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder });
         dialogRef.afterClosed().subscribe(result => {
-            if(result && result.state == true) {
-                this.folderService.reload(this.folder)
-                this.alertService.alert.next('Dossier ' + result.name + ' creer')
+            if (result && result.state === true) {
+                this.folderService.reload(this.folder);
+                this.alertService.alert.next('Dossier ' + result.name + ' creer');
             }
-        })
+        });
     }
 
     addFile() {
-        this.folder = this.folderService.thisFolder
-        let dialogRef = this.dialog.open(AddFileComponent, { panelClass : 'dialogClass', data : this.folder })
+        this.folder = this.folderService.thisFolder;
+        const dialogRef = this.dialog.open(AddFileComponent, { panelClass : 'dialogClass', data : this.folder });
         dialogRef.afterClosed().subscribe(result => {
-            if(result && result.state == true) {
-                this.folderService.reload(this.folder)
-                this.alertService.alert.next('Le fichier ' + result.name + ' à bien été uploader')
+            if (result && result.state === true) {
+                this.folderService.reload(this.folder);
+                this.alertService.alert.next('Le fichier ' + result.name + ' à bien été uploader');
             }
-        })
+        });
     }
 
     ngOnDestroy() {
-        this.routerSubscription.unsubscribe()
+        this.routerSubscription.unsubscribe();
     }
 
 }

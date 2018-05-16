@@ -9,17 +9,17 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router, private routerService: RouterService) { }
 
     canActivate() {
-        if(this.router.url == "/" || this.router.url == "/app") {
-            this.routerService.routeChange(true)
+        if (this.router.url === '/' || this.router.url === '/app') {
+            this.routerService.routeChange(true);
         } else {
-            this.routerService.routeChange(false)
+            this.routerService.routeChange(false);
         }
 
         if (localStorage.getItem('currentUser')) {
-            return true
+            return true;
         }
 
-        this.router.navigate(['/login'])
-        return false
+        this.router.navigate(['/login']);
+        return false;
     }
 }

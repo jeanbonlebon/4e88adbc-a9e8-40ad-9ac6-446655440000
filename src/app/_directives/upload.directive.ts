@@ -6,7 +6,7 @@ import { Toast } from '../_models/_index';
 import { FileService, FolderService } from '../_services/_index';
 
 @Component({
-    selector: 'upload-alert',
+    selector: 'app-upload-alert',
     templateUrl: './upload.directive.html'
 })
 
@@ -17,17 +17,17 @@ export class UploadComponent implements OnInit {
 
     ngOnInit() {
         this.fileService.getAlert().subscribe((data: Toast) => {
-            this.addUpload(data)
-        })
+            this.addUpload(data);
+        });
     }
 
     private addUpload(data: Toast) {
 
-        data.id = this.alerts.length
-        data.percentage = 0
-        data.isDone = false
+        data.id = this.alerts.length;
+        data.percentage = 0;
+        data.isDone = false;
 
-        this.alerts.push(data)
+        this.alerts.push(data);
 
         this.fileService.create(data.file, data.folder_id).subscribe((event: HttpEvent<any>) => {
           switch (event.type) {
@@ -43,10 +43,10 @@ export class UploadComponent implements OnInit {
               break;
             case HttpEventType.Response:
               this.alerts[data.id].isDone = true;
-              this.folderService.reload(data.folder_id)
+              this.folderService.reload(data.folder_id);
               break;
           }
-        })
+        });
 
     }
 

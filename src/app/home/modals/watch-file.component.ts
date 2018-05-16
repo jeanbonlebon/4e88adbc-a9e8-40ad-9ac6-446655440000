@@ -5,17 +5,17 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { FileType, LinkConstructor } from '../../_helpers/_index';
 
 @Component({
-    selector: 'watch-file-component',
+    selector: 'app-watch-file-component',
     templateUrl: './watch-file.component.html'
 })
 
 export class WatchFileComponent implements OnInit {
 
-    isImage: boolean = false;
+    isImage = false;
     image: any = {};
-    isVideo: boolean = false;
+    isVideo = false;
     video: any = {};
-    isPdf: boolean = false;
+    isPdf = false;
     pdf: any = {};
 
     constructor(public dialogRef: MatDialogRef<WatchFileComponent>,
@@ -24,23 +24,18 @@ export class WatchFileComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
-        let link = this.linkConstructor.get(this.data.data)
+        const link = this.linkConstructor.get(this.data.data);
 
-        if(this.data.type == 'image')
-        {
-            this.isImage = true
-            this.image.source = link
-        }
-        else if(this.data.type == 'video')
-        {
-            this.isVideo = true
-            this.video.source = link
-            this.video.type = this.data.data.type
-        }
-        else if(this.data.type == 'pdf')
-        {
-            this.isPdf = true
-            this.pdf.source = link
+        if (this.data.type === 'image') {
+            this.isImage = true;
+            this.image.source = link;
+        } else if (this.data.type === 'video') {
+            this.isVideo = true;
+            this.video.source = link;
+            this.video.type = this.data.data.type;
+        } else if (this.data.type === 'pdf') {
+            this.isPdf = true;
+            this.pdf.source = link;
         }
     }
 

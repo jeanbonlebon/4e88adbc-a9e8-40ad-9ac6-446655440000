@@ -8,7 +8,7 @@ export class RouterService {
     private subject = new Subject<any>();
 
     routeChange(main: boolean) {
-        this.subject.next(main)
+        this.subject.next(main);
     }
 
     getRoute(): Observable<any> {

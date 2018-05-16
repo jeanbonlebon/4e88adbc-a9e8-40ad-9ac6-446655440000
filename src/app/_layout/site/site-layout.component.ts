@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'site-layout',
+    selector: 'app-site-layout',
     templateUrl: './site-layout.component.html'
 })
 

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
 import { appConfig } from '../app.config';
 
-declare const FB:any;
+declare const FB: any;
 
 @Injectable()
 export class AuthenticationService {
@@ -18,16 +18,16 @@ export class AuthenticationService {
         return this.http.post<any>(appConfig.apiUrl + '/auth/login', { email: email, password: password })
             .map(user => {
                 if (user && user.token) {
-                    localStorage.setItem('currentUser', JSON.stringify(user))
-                    this.isLoginSubject.next(true)
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.isLoginSubject.next(true);
                 }
 
-                return user
-            })
+                return user;
+            });
     }
 
     loginFacebook() {
-        FB.init({ appId : '1487784628006176', status : false, cookie : false, xfbml : false, version : 'v2.8' })
+        FB.init({ appId : '1487784628006176', status : false, cookie : false, xfbml : false, version : 'v2.8' });
 
         return new Promise((resolve, reject) => {
             FB.login(result => {
@@ -36,35 +36,35 @@ export class AuthenticationService {
                     .toPromise()
                     .then(user => {
                         if (user && user.token) {
-                            localStorage.setItem('currentUser', JSON.stringify(user))
-                            console.log(JSON.parse(localStorage.getItem('currentUser')))
-                            this.isLoginSubject.next(true)
+                            localStorage.setItem('currentUser', JSON.stringify(user));
+                            console.log(JSON.parse(localStorage.getItem('currentUser')));
+                            this.isLoginSubject.next(true);
                         }
-                        resolve(user)
+                        resolve(user);
                     })
-                    .catch(() => reject())
+                    .catch(() => reject());
                 } else {
-                    reject()
+                    reject();
                 }
-            }, {scope: 'public_profile, email' })
-        })
+            }, {scope: 'public_profile, email' });
+        });
     }
 
     logout() {
-        localStorage.removeItem('currentUser')
-        this.isLoginSubject.next(false)
+        localStorage.removeItem('currentUser');
+        this.isLoginSubject.next(false);
     }
 
     checkUser() {
-        this.hasToken() ? this.isLoginSubject.next(true) : this.isLoginSubject.next(false)
+        this.hasToken() ? this.isLoginSubject.next(true) : this.isLoginSubject.next(false);
     }
 
-    private hasToken() : boolean {
-        return !!localStorage.getItem('currentUser')
+    private hasToken(): boolean {
+        return !!localStorage.getItem('currentUser');
     }
 
-    isLoggedIn() : Observable<boolean> {
-        return this.isLoginSubject.asObservable()
+    isLoggedIn(): Observable<boolean> {
+        return this.isLoginSubject.asObservable();
     }
 
 }

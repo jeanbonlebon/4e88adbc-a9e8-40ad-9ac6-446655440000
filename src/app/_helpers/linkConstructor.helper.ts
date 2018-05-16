@@ -7,7 +7,8 @@ import { File } from '../_models/_index';
 @Injectable()
 export class LinkConstructor {
     public get(file: File) {
-        let extension = file.name.split('.')
-        return appConfig.apiUrl + '/files/' + sha3_256(file.user.toString()) + '/' + file._id.toString() + '.' + extension[extension.length -1]
+        const extension = file.name.split('.');
+        const filename = file._id.toString() + '.' + extension[extension.length - 1];
+        return appConfig.apiUrl + '/files/' + sha3_256(file.user.toString()) + '/' + filename;
     }
 }

@@ -11,8 +11,8 @@ export class AlertService {
     constructor(private router: Router, private snackBar: MatSnackBar) {
 
         this.alert.subscribe(message => {
-            this.showSnackbar(message)
-        })
+            this.showSnackbar(message);
+        });
 
     }
 

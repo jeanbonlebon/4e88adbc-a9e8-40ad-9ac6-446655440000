@@ -8,7 +8,7 @@ import { Folder } from '../../_models/folder';
 import { FolderService, FileService } from '../../_services/_index';
 
 @Component({
-    selector: 'move-component',
+    selector: 'app-move-component',
     templateUrl: './move.component.html'
 })
 
@@ -17,9 +17,9 @@ export class MoveComponent {
     folders: Folder[];
     toFolder: Folder;
 
-    isRoot: boolean = true;
+    isRoot = true;
     isEmpty: boolean;
-    rootActive: boolean = false;
+    rootActive = false;
 
     isDisabled = false;
 
@@ -27,58 +27,62 @@ export class MoveComponent {
                 private fb: FormBuilder,
                 private folderService: FolderService,
                 private fileService: FileService,
-                @Inject(MAT_DIALOG_DATA) public data: any) { this.getDatasRoot(null) }
+                @Inject(MAT_DIALOG_DATA) public data: any) { this.getDatasRoot(null); }
 
 
     public getDatasRoot(parent: any) {
         this.folderService.getChilds(parent).subscribe(
             (data) => {
-                this.folders = data
-                data.length == 0 ? this.isEmpty = true : this.isEmpty = false
-                parent == null ? this.isRoot = true : this.isRoot = false
-                this.isDisabled = true
+                this.folders = data;
+                data.length === 0 ? this.isEmpty = true : this.isEmpty = false;
+                parent == null ? this.isRoot = true : this.isRoot = false;
+                this.isDisabled = true;
             },
             (err) => console.error(err)
-        )
+        );
     }
 
     public selectedFolder(folder) {
-        if(folder == 'null') {
-            this.toFolder ? this.toFolder.active = false : null
-            this.rootActive = true
-            this.toFolder = null
+        if (folder === 'null') {
+            if (this.toFolder) {
+                this.toFolder.active = false;
+            }
+            this.rootActive = true;
+            this.toFolder = null;
         } else {
-            this.rootActive = false
-            this.toFolder ? this.toFolder.active = false : null
-            folder.active = true
-            this.toFolder = folder
+            this.rootActive = false;
+            if (this.toFolder) {
+                this.toFolder.active = false;
+            }
+            folder.active = true;
+            this.toFolder = folder;
         }
-        this.isDisabled = false
+        this.isDisabled = false;
     }
 
     public move() {
-        let moveTo; this.toFolder == null ? moveTo = 'null' : moveTo = this.toFolder._id
+        let moveTo; this.toFolder == null ? moveTo = 'null' : moveTo = this.toFolder._id;
 
-        if(this.data.type == 'folder') {
+        if (this.data.type === 'folder') {
 
           this.folderService.move(this.data.data._id, {folder : moveTo}).subscribe(
             (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été déplacé'),
             (err) => this.close(false, '')
-          )
+          );
 
         } else {
 
           this.fileService.move(this.data.data._id, {folder : moveTo}).subscribe(
             (data) => this.close(true, 'Le fichier ' + this.data.data.name + ' à bien été déplacé'),
             (err) => this.close(false, '')
-          )
+          );
 
         }
 
     }
 
     public close(state: boolean, name: string) {
-        this.dialogRef.close({state : state, name : name})
+        this.dialogRef.close({state : state, name : name});
     }
 
 }

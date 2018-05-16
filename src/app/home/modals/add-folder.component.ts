@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { FolderService } from '../../_services/_index';
 
 @Component({
-    selector: 'add-folder-component',
+    selector: 'app-add-folder-component',
     templateUrl: './add-folder.component.html'
 })
 
@@ -22,16 +22,16 @@ export class AddFolderComponent implements OnInit {
     ngOnInit() {
         this.addFolderForm = this.fb.group ({
             name : ['']
-        })
+        });
     }
 
     save(form) {
-        console.log(form.controls.name.value)
-        console.log(this.data)
+        console.log(form.controls.name.value);
+        console.log(this.data);
         this.folderService.create({ name : form.controls.name.value, parent : this.data }).subscribe(
             (data) => this.close(true, form.controls.name.value),
             (err) => this.close(false, '')
-        )
+        );
     }
 
     close(state: boolean, name: string) {

@@ -32,7 +32,7 @@ const appRoutes: Routes = [
 
     { path: 'login', component: LoginComponent},
     { path: 'file/:id', component: FilesComponent},
-    //{ path: 'register', component: RegisterComponent },
+    // { path: 'register', component: RegisterComponent },
 
 ];
 

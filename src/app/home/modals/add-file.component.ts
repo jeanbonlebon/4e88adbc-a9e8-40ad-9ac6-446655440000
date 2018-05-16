@@ -7,14 +7,14 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { FileService } from '../../_services/_index';
 
 @Component({
-    selector: 'add-file-component',
+    selector: 'app-add-file-component',
     templateUrl: './add-file.component.html'
 })
 
 export class AddFileComponent implements OnInit {
 
     addFileForm: FormGroup;
-    loading: boolean = false;
+    loading = false;
 
     isNewName = false;
 
@@ -31,39 +31,39 @@ export class AddFileComponent implements OnInit {
             folder : this.data,
             wantName : false,
             name : ''
-        })
+        });
     }
 
     onFileChange(event) {
-        if(event.target.files.length > 0) {
-            let file = event.target.files[0]
-            this.addFileForm.get('file').setValue(file)
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            this.addFileForm.get('file').setValue(file);
         }
     }
 
     private prepareSave(): any {
-        let input = new FormData()
-        let file = this.addFileForm.value.file
+        const input = new FormData();
+        const file = this.addFileForm.value.file;
 
-        if(this.addFileForm.get('name').value != '' && this.isNewName == true) {
-            let extension = file.name.split('.')
-            let newName = this.addFileForm.get('name').value + '.' + extension[extension.length - 1]
-            input.set('file', file, newName)
+        if (this.addFileForm.get('name').value !== '' && this.isNewName === true) {
+            const extension = file.name.split('.');
+            const newName = this.addFileForm.get('name').value + '.' + extension[extension.length - 1];
+            input.set('file', file, newName);
         } else {
-            input.set('file', file)
+            input.set('file', file);
         }
 
-        return input
+        return input;
     }
 
     save() {
-        const formModel = this.prepareSave()
-        this.loading = true
-        let file = formModel.getAll('file')
-        console.log(formModel, this.addFileForm.get('folder').value)
-        this.fileService.startUpload(formModel, this.addFileForm.get('folder').value, file[0].name)
-        this.close(false, '')
-        //this.close(true, file[0].name)
+        const formModel = this.prepareSave();
+        this.loading = true;
+        const file = formModel.getAll('file');
+        console.log(formModel, this.addFileForm.get('folder').value);
+        this.fileService.startUpload(formModel, this.addFileForm.get('folder').value, file[0].name);
+        this.close(false, '');
+        // this.close(true, file[0].name)
 
 /*
         this.fileService.create(formModel, this.addFileForm.get('folder').value).subscribe((event: HttpEvent<any>) => {

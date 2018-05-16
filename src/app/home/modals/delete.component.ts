@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { FolderService, FileService } from '../../_services/_index';
 
 @Component({
-    selector: 'delete-component',
+    selector: 'app-delete-component',
     templateUrl: './delete.component.html'
 })
 
@@ -19,19 +19,19 @@ export class DeleteComponent {
                 @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     delete() {
-        if(this.data.type == 'folder') {
+        if (this.data.type === 'folder') {
 
             this.folderService.delete(this.data.data._id).subscribe(
                 (data) => this.close(true, 'Le dossier ' + this.data.data.name + ' à bien été supprimé'),
                 (err) => this.close(false, '')
-            )
+            );
 
         } else {
 
             this.fileService.delete(this.data.data._id).subscribe(
                 (data) => this.close(true, 'Le fichier ' + this.data.data.name + ' à bien été supprimé'),
                 (err) => this.close(false, '')
-            )
+            );
 
         }
     }
