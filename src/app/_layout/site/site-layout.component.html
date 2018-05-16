@@ -9,9 +9,9 @@
             <button mat-button>Contact</button>
         </ul>
         <ul fxFlex="20%" class="right">
-            <button mat-button><mat-icon>person</mat-icon><strong>Equipe</strong></button>
+            <button mat-button [routerLink]="['/login']"><mat-icon>person</mat-icon>Mon Compte</button>
         </ul>
     </div>
 </nav>
 
-<landing class="landing"></landing>
+<app-landing class="landing"></app-landing>

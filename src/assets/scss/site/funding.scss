@@ -1,0 +1,42 @@
+.funding {
+    mat-card {
+        margin: 5px;
+        padding: 0px;
+        mat-card-header {
+            background: rgba(0,0,0,.024);
+            margin-bottom: 16px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            .mat-card-header-text {
+                width: 100%;
+                .mat-card-title {
+                    font-size: 1rem !important;
+                }
+            }
+            .mat-card-subtitle:not(:first-child) {
+                margin-bottom: 6px;
+            }
+            &.funding_active {
+                background-color: $orange;
+                color: #FFF;
+            }
+        }
+        mat-card-content {
+            text-align: center;
+            h1 {
+                text-transform: uppercase;
+            }
+        }
+        &:hover {
+            box-shadow: 0 10px 16px rgba(0,0,0,.2);
+        }
+        mat-card-actions {
+            text-align: center;
+            padding-bottom: 25px !important;
+            button {
+                background-color: $orange;
+                color: #FFF;
+            }
+        }
+    }
+}

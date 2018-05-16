@@ -7,7 +7,9 @@ $orange : #FF9800; //Primary
 $deep-orange : #FF5722; //Accent
 
 /* Site StyleSheets */
+@import "./assets/scss/site/main.scss";
 @import "./assets/scss/site/header.scss";
+@import "./assets/scss/site/funding.scss";
 
 /* Auth StyleSheets */
 @import "./assets/scss/auth/login.scss";
