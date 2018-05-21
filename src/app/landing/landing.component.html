@@ -6,7 +6,7 @@
     </div>
 </section>
 
-<section class="funding">
+<section class="funding sections">
     <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
         <div *ngFor="let offer of offers" fxFlex="25%">
 
@@ -31,20 +31,44 @@
     </div>
 </section>
 
-<section class="contact">
-    <div class="container">
+<section class="upgade sections">
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
 
-        <h1>Contact</h1>
-        <h3>Si vous avez une question à propos de notre service, n'hesitez pas à nous contacter.</h3>
+        <div fxFlex="50%">
+            <h3>Egret Is A Complete UI Framework For Angular</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure nam, illum et quis officiis beatae.</p>
+        </div>
 
-          <mat-form-field>
-              <input matInput placeholder="Adresse E-Mail">
-          </mat-form-field>
+        <div fxFlex="50%" style="text-align: center;">
+            <button mat-button>Passer Premium</button>
+        </div>
 
-          <mat-form-field>
-              <textarea matInput placeholder="Votre message"></textarea>
-          </mat-form-field>
+    </div>
+</section>
 
+<section class="contact sections">
+    <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <div fxFlex="100%">
+            <h1>Contact</h1>
+            <h3>Si vous avez une question à propos de notre service, n'hesitez pas à nous contacter.</h3>
+        </div>
+
+            <mat-form-field fxFlex="100%">
+                <input matInput placeholder="Nom">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%">
+                <input matInput placeholder="Adresse E-Mail">
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%">
+                    <input matInput placeholder="Sujet">
+                </mat-form-field>
+
+            <mat-form-field fxFlex="100%">
+                <textarea matInput placeholder="Votre message"></textarea>
+            </mat-form-field>
 
     </div>
 </section>

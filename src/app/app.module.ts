@@ -22,6 +22,7 @@ import { HomeComponent } from './home/_index';
 import { FilesComponent } from './home/files/_index';
 // tslint:disable-next-line:max-line-length
 import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent, AddFileComponent, WatchFileComponent } from './home/modals/_index';
+import { MentionsComponent, CguComponent } from './landing/terms/_index';
 import { LandingComponent } from './landing/_index';
 import { ProfileComponent } from './profile/_index';
 
@@ -43,6 +44,8 @@ import 'rxjs/add/observable/forkJoin';
     AppLayoutComponent,
     SiteLayoutComponent,
     LandingComponent,
+    MentionsComponent,
+    CguComponent,
     ProfileComponent,
     UploadComponent,
     HomeComponent,

@@ -2,8 +2,32 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+.sections {
+    padding: 80px 0;
+    h1 {
+        font-size: 35px;
+    }
+    h3 {
+        font-size: 23px;
+    }
+}
+
 .container {
     max-width: 1170px;
     margin: 0 auto;
     padding: 0 15px;
+}
+
+/*** MINI - SECTIONS **/
+.upgade {
+    background-image: url('./assets/img/trianglify.svg');
+    background-size: cover;
+    button {
+        text-transform: uppercase;
+        background-color: #FFF;
+    }
+}
+ 
+.contact {
+    font-family: 'Roboto Condensed', sans-serif;
 }
