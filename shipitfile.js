@@ -21,6 +21,8 @@ module.exports = shipit => {
         shipit.local('git pull origin master')
         .then(function(res) {
             console.log('Angular App is Updated with Repository')
+	    shipit.local('npm install')
+	    .then(function(res) {
             shipit.local('npm run build')      
             .then(function(res) {
                 console.log('Production App is Builded')
@@ -34,6 +36,7 @@ module.exports = shipit => {
                     })
                 })
             })
+	    })
         })
     })
 }
