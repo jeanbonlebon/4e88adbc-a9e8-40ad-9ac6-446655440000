@@ -17,7 +17,7 @@ import { UploadComponent } from './_directives/_index';
 import { AuthenticationService, AlertService, FolderService, FileService, UserService, RouterService } from './_services/_index';
 
 import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
-import { LoginComponent } from './auth/_index';
+import { LoginComponent, RegisterComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { FilesComponent } from './home/files/_index';
 // tslint:disable-next-line:max-line-length
@@ -40,6 +40,7 @@ import 'rxjs/add/observable/forkJoin';
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     AppHeaderComponent,
     AppLayoutComponent,
     SiteLayoutComponent,

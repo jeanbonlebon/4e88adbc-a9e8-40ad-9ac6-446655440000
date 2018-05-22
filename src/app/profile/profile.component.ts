@@ -16,6 +16,7 @@ export class ProfileComponent {
 
     user: User;
     myStorage: number;
+    spaceAvailable: string;
     dataLoaded = false;
 
     constructor(private userService: UserService) {
@@ -28,8 +29,7 @@ export class ProfileComponent {
                 this.user = this.buildUser(data);
                 this.myStorage = Math.round((this.user.space_available / maxStorage) * 100);
                 this.dataLoaded = true;
-                console.log(this.myStorage);
-                console.log(this.convertBytes(this.user.space_available));
+                this.spaceAvailable = this.convertBytes(this.user.space_available);
             },
             (err) => console.error(err)
         );

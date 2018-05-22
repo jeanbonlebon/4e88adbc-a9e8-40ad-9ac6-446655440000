@@ -22,7 +22,7 @@
 
             <div class="formActions">
                 <button mat-button type="submit" [disabled]="loginForm.invalid" class="login">Se connecter</button>
-                <button mat-button type="button" class="register">S'enregister</button>
+                <button mat-button type="button" [routerLink]="['/register']" class="register">S'enregister</button>
             </div>
 
         </form>

@@ -1,65 +1,88 @@
 <section class="container profile" *ngIf="dataLoaded && user">
 
     <h2>Bienvenue {{user.firstName}} !</h2>
-    <h4>Vous pouvez modifier vos informations personnelles</h4>
 
-    <mat-accordion>
+    <section>
+        <h4>Vous pouvez modifier vos informations personnelles</h4>
 
-        <mat-expansion-panel hideToggle="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>Nom et prénom</mat-panel-title>
-                <mat-panel-description>
-                    {{user.firstName}} {{user.lastName}}
-                    <mat-icon>account_circle</mat-icon>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+        <mat-accordion>
 
-        </mat-expansion-panel>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Nom et prénom</mat-panel-title>
+                    <mat-panel-description>
+                        {{user.firstName}} {{user.lastName}}
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-        <mat-expansion-panel hideToggle="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>Adresse E-Mail</mat-panel-title>
-                <mat-panel-description>
-                    {{user.email}}
-                    <mat-icon>mail_outline</mat-icon>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+            </mat-expansion-panel>
 
-            <mat-form-field>
-                <input matInput type="text" placeholder="Nouvelle Adresse E-Mail">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="text" placeholder="Confirmer nouvelle Adresse E-Mail">
-            </mat-form-field>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Adresse E-Mail</mat-panel-title>
+                    <mat-panel-description>
+                        {{user.email}}
+                        <mat-icon>mail_outline</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-            <mat-action-row>
-                <button mat-button color="primary">Modifier</button>
-            </mat-action-row>
-        </mat-expansion-panel>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Nouvelle Adresse E-Mail">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Confirmer nouvelle Adresse E-Mail">
+                </mat-form-field>
 
-        <mat-expansion-panel hideToggle="true">
-            <mat-expansion-panel-header>
-                <mat-panel-title>Mot de passe</mat-panel-title>
-                <mat-panel-description>
-                    •••••••
-                    <mat-icon>vpn_key</mat-icon>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
+                <mat-action-row>
+                    <button mat-button color="primary">Modifier</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-            <mat-form-field>
-                <input matInput type="text" placeholder="Nouveau Mot de passe">
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput type="text" placeholder="Confirmer nouveau Mot de passe">
-            </mat-form-field>
+            <mat-expansion-panel hideToggle="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Mot de passe</mat-panel-title>
+                    <mat-panel-description>
+                        •••••••
+                        <mat-icon>vpn_key</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-            <mat-action-row>
-                <button mat-button color="primary">Modifier</button>
-            </mat-action-row>
-        </mat-expansion-panel>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Nouveau Mot de passe">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="text" placeholder="Confirmer nouveau Mot de passe">
+                </mat-form-field>
 
-    </mat-accordion>
+                <mat-action-row>
+                    <button mat-button color="primary">Modifier</button>
+                </mat-action-row>
+            </mat-expansion-panel>
 
-    <mat-progress-spinner color="primary" mode="determinate" [value]="myStorage"></mat-progress-spinner>
+        </mat-accordion>
+    </section>
+
+    <section>
+        <h4>Gérer votre stockage</h4>
+        <div fxLayout="row wrap" fxLayoutAlign="start center">
+            <div fxFlex="50%" class="storage">
+                <mat-progress-spinner color="primary" mode="determinate" [value]="myStorage"></mat-progress-spinner>
+                <div class="dataInfos">
+                    <span class="percentage">{{myStorage}} %</span>
+                    <span class="space">{{spaceAvailable}}</span>
+                </div>
+            </div>
+            <div fxFlex="50%">
+                <p>Vous avez un actuellement compte gratuit</p>
+                <button mat-button class="button_border">Passer Premium</button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h4>Quittez votre session</h4>
+        <button mat-button class="button_border">Se déconnecter</button>
+    </section>
 
 </section>

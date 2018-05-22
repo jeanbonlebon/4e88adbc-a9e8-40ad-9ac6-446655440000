@@ -36,6 +36,9 @@
             &.register {
                 background-color: $deep-orange;
             }
+            &.returnLogin {
+                color: #FFF;
+            }
         }
     }
     & .facebook {
@@ -43,4 +46,15 @@
         background-color: #3B5998;
         color: #FFF;
     }
+
+    & .cgu {
+        padding: 15px 0;
+        display: block;
+        text-align: center;
+        & a {
+            color: $deep-orange;
+        }
+    }
 }
+
+

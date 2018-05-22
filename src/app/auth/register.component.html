@@ -1,0 +1,52 @@
+<div class="fullScreen">
+    <div id="loginContainer">
+
+        <header>
+            <a href="#"><img src="../assets/img/app_logo.png" /></a>
+            <a href="#"><h1>Sup<span>File</span></h1></a>
+        </header>
+
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+            
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+                <mat-form-field fxFlex="50%">
+                    <input matInput placeholder="Prénom" formControlName="prenom" required>
+                    <mat-error *ngIf="registerForm.controls.prenom.hasError('required')">Votre prénom est requis</mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="50%">
+                    <input matInput placeholder="Nom" formControlName="nom" required>
+                    <mat-error *ngIf="registerForm.controls.nom.hasError('required')">Votre nom est requis</mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Adresse E-Mail" required>
+                <mat-error *ngIf="registerForm.controls.email.hasError('required')">L'adresse E-Mail est requise</mat-error>
+                <mat-error *ngIf="registerForm.controls.email.hasError('pattern')">L'adresse E-Mail est invalide</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="password" placeholder="Mot de passe" [type]="hide ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="registerForm.controls.password.hasError('required')">Le mot de passe est requis</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput formControlName="confirmPassword" placeholder="Confirmer le mot de passe" [type]="hide ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="registerForm.controls.confirmPassword.errors?.MatchPassword">Le mot de passe ne correspond pas</mat-error>
+            </mat-form-field>
+
+            <mat-checkbox formControlName="accept_cgu" class="cgu">
+                J'accepte les <a [routerLink]="['/conditions-generales-utilisation']">conditions d'utilisation</a>
+            </mat-checkbox>
+
+            <div class="formActions">
+                <button mat-button type="button" [routerLink]="['/login']" class="login returnLogin"><mat-icon>reply</mat-icon>Se connecter</button>
+                <button mat-button type="submit" [disabled]="registerForm.invalid" class="register">S'enregister</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>

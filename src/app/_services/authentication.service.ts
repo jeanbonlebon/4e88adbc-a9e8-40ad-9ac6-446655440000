@@ -26,6 +26,18 @@ export class AuthenticationService {
             });
     }
 
+    register(data: any) {
+        return this.http.post<any>(appConfig.apiUrl + '/auth/register', data)
+            .map(user => {
+                if (user && user.token) {
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.isLoginSubject.next(true);
+                }
+
+                return user;
+            });
+    }
+
     loginFacebook() {
         FB.init({ appId : '1487784628006176', status : false, cookie : false, xfbml : false, version : 'v2.8' });
 

@@ -11,4 +11,32 @@ section.profile {
             }
         }
     }
+    .storage {
+        mat-progress-spinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .dataInfos {
+            display: inline-block;
+            vertical-align: middle;
+            span {
+                display: block;
+                margin-left: 15px;
+                &.space {
+                    font-size: 17px;
+                    color: $deep-orange;
+                }
+                &.percentage {
+                    font-size: 35px;
+                }
+            }
+        }
+    }
+    .button_border {
+        border: solid 1px $deep-orange;
+        &:hover {
+            background-color: $deep-orange;
+            color: #FFF;
+        }
+    }
 }
