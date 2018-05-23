@@ -16,7 +16,7 @@ import { AuthGuard } from './_guards/_index';
 import { UploadComponent } from './_directives/_index';
 import { AuthenticationService, AlertService, FolderService, FileService, UserService, RouterService } from './_services/_index';
 
-import { AppHeaderComponent, AppLayoutComponent, SiteLayoutComponent } from './_layout/_index';
+import { AppHeaderComponent, AppLayoutComponent, SiteHeaderComponent, SiteLayoutComponent, SiteFooterComponent } from './_layout/_index';
 import { LoginComponent, RegisterComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
 import { FilesComponent } from './home/files/_index';
@@ -43,7 +43,9 @@ import 'rxjs/add/observable/forkJoin';
     RegisterComponent,
     AppHeaderComponent,
     AppLayoutComponent,
+    SiteHeaderComponent,
     SiteLayoutComponent,
+    SiteFooterComponent,
     LandingComponent,
     MentionsComponent,
     CguComponent,

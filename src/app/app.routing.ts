@@ -29,14 +29,13 @@ const appRoutes: Routes = [
       children : [
           { path: '', component: LandingComponent },
           { path: 'mentions-legales', component: MentionsComponent },
-          { path: 'conditions-generales-utilisation', component: MentionsComponent },
+          { path: 'conditions-generales-utilisation', component: CguComponent },
       ]
     },
 
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'file/:id', component: FilesComponent},
-    // { path: 'register', component: RegisterComponent },
+    { path: 'file/:id', component: FilesComponent}
 
 ];
 

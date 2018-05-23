@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { UserService, RouterService } from '../_services/_index';
+import { AuthenticationService, AlertService, UserService, RouterService } from '../_services/_index';
 
 import { User } from '../_models/user';
 
@@ -19,9 +20,10 @@ export class ProfileComponent {
     spaceAvailable: string;
     dataLoaded = false;
 
-    constructor(private userService: UserService) {
-        this.getUserData();
-    }
+    constructor(
+        private userService: UserService,
+        private authenticationService: AuthenticationService,
+        private router: Router) { this.getUserData(); }
 
     private getUserData() {
         this.userService.get().subscribe(
@@ -55,5 +57,10 @@ export class ProfileComponent {
         }
 
         return(n.toFixed(n >= 10 || l < 1 ? 0 : 1) + ' ' + units[l]);
+    }
+
+    public logout() {
+        this.authenticationService.logout();
+        this.router.navigate(['/']);
     }
 }

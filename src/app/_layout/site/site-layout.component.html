@@ -1,17 +1,5 @@
-<nav class="mainNav">
-    <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
-        <ul fxFlex="10%">
-            <img src="./assets/img/app_logo.svg" />
-        </ul>
-        <ul fxFlex="70%">
-            <button mat-button>Intro</button>
-            <button mat-button>Equipe</button>
-            <button mat-button>Contact</button>
-        </ul>
-        <ul fxFlex="20%" class="right">
-            <button mat-button [routerLink]="['/login']"><mat-icon>person</mat-icon>Mon Compte</button>
-        </ul>
-    </div>
-</nav>
+<app-site-header></app-site-header>
 
 <router-outlet></router-outlet>
+
+<app-site-footer></app-site-footer>

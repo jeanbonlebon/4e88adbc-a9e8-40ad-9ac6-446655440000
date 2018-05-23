@@ -1,0 +1,15 @@
+<nav class="mainNav mat-elevation-z6">
+        <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
+            <ul fxFlex="10%">
+                <a [routerLink]="['/']"><img src="./assets/img/app_logo.svg" /></a>
+            </ul>
+            <ul fxFlex="70%">
+                <button mat-button>Intro</button>
+                <button mat-button>Equipe</button>
+                <button mat-button>Contact</button>
+            </ul>
+            <ul fxFlex="20%" class="right">
+                <button mat-button [routerLink]="['/login']"><mat-icon>person</mat-icon>Mon Compte</button>
+            </ul>
+        </div>
+</nav>
