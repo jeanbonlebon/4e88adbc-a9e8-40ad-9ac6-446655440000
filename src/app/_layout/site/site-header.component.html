@@ -9,7 +9,8 @@
                 <button mat-button>Contact</button>
             </ul>
             <ul fxFlex="20%" class="right">
-                <button mat-button [routerLink]="['/login']"><mat-icon>person</mat-icon>Mon Compte</button>
+                <button *ngIf="(isLoggedIn | async)" mat-button [routerLink]="['/app']"><mat-icon>person</mat-icon>{{currentUser.user.firstName}} {{currentUser.user.lastName}}</button>
+                <button *ngIf="!(isLoggedIn | async)" mat-button [routerLink]="['/login']"><mat-icon>person</mat-icon>Se connecter</button>
             </ul>
         </div>
 </nav>

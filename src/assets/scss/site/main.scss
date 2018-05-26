@@ -27,7 +27,29 @@
         background-color: #FFF;
     }
 }
- 
+
+.application {
+    position: relative;
+    .bg {
+        position: absolute;
+        height : 50%;
+        width: 100%;
+        background-color:#EEE;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .photo {
+        z-index: 9;
+        background: url('./assets/img/phone.png');
+        height: 500px;
+        background-size: 500px;
+    }
+    .infos {
+        z-index: 9;
+    }
+}
+
 .contact {
     font-family: 'Roboto Condensed', sans-serif;
 }
