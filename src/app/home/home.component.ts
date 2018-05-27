@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs/Observable';
+import { environment as env } from '../../environments/environment';
 
 import { saveAs } from 'file-saver';
 
@@ -67,7 +68,6 @@ export class HomeComponent implements OnInit {
     public getDatas(_id: any, isReturn: boolean, isReload: boolean) {
 
         const arrayRes = [];
-
         arrayRes.push(this.folderService.get(_id));
         arrayRes.push(this.folderService.getChilds(_id));
         arrayRes.push(this.fileService.get(_id));
@@ -150,6 +150,25 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    public share(folder: Folder, status: string) {
+        this.folderService.share(folder._id, status).subscribe(
+            (data) => {
+                this.realodAfterAction('Le dossier ' + folder.name + ' a été partagé publiquement');
+            },
+            (err) => console.error(err)
+        );
+    }
+
+    public copyLink(_id: string) {
+        const event = (e: ClipboardEvent) => {
+            e.clipboardData.setData('text/plain', env.baseUrl + '/file/' + _id);
+            e.preventDefault();
+            document.removeEventListener('copy', event);
+        };
+        document.addEventListener('copy', event);
+        document.execCommand('copy');
+    }
+
     public downloadFile(file: File) {
       this.fileService.download(file._id).subscribe(
           (data) => {
@@ -163,7 +182,6 @@ export class HomeComponent implements OnInit {
     public downloadFolder(folder: Folder) {
       this.folderService.download(folder._id).subscribe(
           (data) => {
-              console.log(data);
               const blob = new Blob([data], { type: 'application/x-zip-compressed' });
               saveAs(blob, folder.name);
           },
@@ -185,7 +203,8 @@ export class HomeComponent implements OnInit {
         const dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder });
         dialogRef.afterClosed().subscribe(result => {
             if (result && result.state === true) {
-                this.realodAfterAction('Le dossier ' + result.name + ' creer');
+                this.folderService.reload(this.folder);
+                this.alertService.alert.next('Dossier ' + result.name + ' creer');
             }
         });
     }

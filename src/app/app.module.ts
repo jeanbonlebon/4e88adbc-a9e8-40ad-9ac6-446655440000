@@ -98,4 +98,5 @@ import 'rxjs/add/observable/forkJoin';
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
+
 export class AppModule { }

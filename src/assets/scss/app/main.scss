@@ -21,9 +21,29 @@
       min-width: 36px;
     }
 }
+.container .list-container {
+    .icon-line {
+        position: relative;
+        .isShared {
+            position: absolute;
+            top: -9px;
+            right: 22px;
+            color: $deep-orange;
+            font-size: 19px;
+        }
+    }
+    .actions {
+        height: 73.2333px;
+    }
+}
 .container .list-container.grid{
-    width: 25%;
+    flex: 1 1 25% !important;
+    max-width: 25% !important;
     position: relative;
+    .grid_align {
+        display: inherit !important;
+        position: relative;
+    }
     button.list-line {
         padding: 30px 0px;
         .mat-icon {
@@ -47,8 +67,8 @@
     }
     .actions {
       position: absolute;
-      bottom: 0;
-      right: 44px;
+      bottom: -12px;
+      right: 70px;
       button {
         min-width: 70px;
         height: 60px;

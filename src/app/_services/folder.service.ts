@@ -39,6 +39,10 @@ export class FolderService {
         return this.http.post(env.apiUrl + '/folder', folder);
     }
 
+    share(_id: any, status: string) {
+        return this.http.put(env.apiUrl + '/share/' + _id, {status: status});
+    }
+
     move(_id: any, folder: any) {
         return this.http.put(env.apiUrl + '/folder/move/' + _id, folder);
     }

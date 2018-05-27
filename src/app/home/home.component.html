@@ -20,46 +20,56 @@
 
     <div fxLayout="row wrap" fxLayoutAlign="start center"> <!-- *ngIf="!emptyFolders" -->
 
-        <mat-list-item class="list-container" *ngFor="let folder of folders" [ngClass]="{ 'grid' : layoutGrid }">
+        <mat-list-item fxFlex="100%" class="list-container" *ngFor="let folder of folders" [ngClass]="{ 'grid' : layoutGrid }">
 
-            <button mat-button class="list-line" (click)="getDatas(folder._id, false, false)">
-                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon>folder</mat-icon></div>
-                <div fxFlex="40%" class="text-line"><h4 mat-line> {{folder.name}} </h4></div>
-                <div fxFlex="40%" class="text-line"><p mat-line> {{folder.updatedAt | date}} </p></div>
-            </button>
-            <div fxFlex="10%" class="actions">
-                <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+            <div fxLayout="row wrap" fxLayoutAlign="start center" class="grid_align">
+                <button fxFlex="90%" mat-button class="list-line" (click)="getDatas(folder._id, false, false)">
+                    <div fxLayout="row wrap" fxLayoutAlign="start center" class="grid_align">
+                        <div fxFlex="10%" class="icon-line">
+                            <mat-icon mat-list-icon>folder</mat-icon>
+                            <mat-icon *ngIf='folder.public' class="isShared">share</mat-icon>
+                        </div>
+                        <div fxFlex="40%" class="text-line"><h4 mat-line> {{folder.name}} </h4></div>
+                        <div fxFlex="40%" class="text-line"><p mat-line> {{folder.updatedAt | date}} </p></div>
+                    </div>
+                </button>
+                <div fxFlex="10%" class="actions">
+                    <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+                </div>
             </div>
-
 
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
                 <button mat-menu-item (click)="rename(folder, 'folder')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(folder, 'folder')"><mat-icon>close</mat-icon>Supprimer</button>
                 <button mat-menu-item (click)="downloadFolder(folder)"><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(folder, 'folder')"><mat-icon>redo</mat-icon>Déplacer</button>
-                <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
+                <button mat-menu-item *ngIf='folder.public == false' (click)="share(folder, true)"><mat-icon>share</mat-icon>Partager</button>
+                <button mat-menu-item *ngIf='folder.public == true' (click)="copyLink(folder._id)"><mat-icon>link</mat-icon>Copier le lien</button>
+                <button mat-menu-item *ngIf='folder.public == true' (click)="share(folder, false)"><mat-icon>share</mat-icon>Ne plus partager</button>
             </mat-menu>
 
         </mat-list-item>
 
-        <mat-list-item class="list-container" *ngFor="let file of files" [ngClass]="{ 'grid' : layoutGrid }">
-
-            <button mat-button class="list-line" (click)="display(file)">
-                <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon> {{file.logoType}} </mat-icon></div>
-                <div fxFlex="40%" class="text-line"><h4 mat-line> {{file.name}} </h4></div>
-                <div fxFlex="40%" class="text-line"><p mat-line> {{file.updatedAt | date}} </p></div>
-            </button>
-            <div fxFlex="10%" class="actions">
-                <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+        <mat-list-item fxFlex="100%" class="list-container" *ngFor="let file of files" [ngClass]="{ 'grid' : layoutGrid }">
+            
+            <div fxLayout="row wrap" fxLayoutAlign="start center" class="grid_align">
+                <button fxFlex="90%" mat-button class="list-line" (click)="display(file)">
+                    <div fxLayout="row wrap" fxLayoutAlign="start center" class="grid_align">
+                        <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon> {{file.logoType}} </mat-icon></div>
+                        <div fxFlex="40%" class="text-line"><h4 mat-line> {{file.name}} </h4></div>
+                        <div fxFlex="40%" class="text-line"><p mat-line> {{file.updatedAt | date}} </p></div>
+                    </div>
+                </button>
+                <div fxFlex="10%" class="actions">
+                    <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+                </div>
             </div>
-
 
             <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
                 <button mat-menu-item (click)="rename(file, 'file')"><mat-icon>edit</mat-icon>Renommer</button>
                 <button mat-menu-item (click)="delete(file, 'file')"><mat-icon>close</mat-icon>Supprimer</button>
                 <button mat-menu-item (click)="downloadFile(file)"><mat-icon>file_upload</mat-icon>Télécharger</button>
                 <button mat-menu-item (click)="move(file, 'file')"><mat-icon>redo</mat-icon>Déplacer</button>
-                <button mat-menu-item><mat-icon>share</mat-icon>Partager</button>
             </mat-menu>
 
         </mat-list-item>
@@ -69,7 +79,7 @@
     <mat-card fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="emptyFolders" class="zoneDropEmpty">
         <h2 fxFlex="70%">Vous pouvez deposer un fichier dans cette zone ou creer un nouveau dossier</h2>
         <div fxFlex="30%">
-            <button mat-button><mat-icon color="primary" (click)="addFolder()">create_new_folder</mat-icon></button>
+            <button mat-button (click)="addFolder()"><mat-icon color="primary">create_new_folder</mat-icon></button>
         </div>
     </mat-card>
 

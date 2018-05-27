@@ -26,8 +26,6 @@ export class AddFolderComponent implements OnInit {
     }
 
     save(form) {
-        console.log(form.controls.name.value);
-        console.log(this.data);
         this.folderService.create({ name : form.controls.name.value, parent : this.data }).subscribe(
             (data) => this.close(true, form.controls.name.value),
             (err) => this.close(false, '')
