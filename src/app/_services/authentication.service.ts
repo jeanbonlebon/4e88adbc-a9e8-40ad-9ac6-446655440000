@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 
-import { appConfig } from '../app.config';
+import { environment as env } from '../../environments/environment';
 
 declare const FB: any;
 
@@ -15,7 +15,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
 
     login(email: string, password: string) {
-        return this.http.post<any>(appConfig.apiUrl + '/auth/login', { email: email, password: password })
+        return this.http.post<any>(env.apiUrl + '/auth/login', { email: email, password: password })
             .map(user => {
                 if (user && user.token) {
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -27,7 +27,7 @@ export class AuthenticationService {
     }
 
     register(data: any) {
-        return this.http.post<any>(appConfig.apiUrl + '/auth/register', data)
+        return this.http.post<any>(env.apiUrl + '/auth/register', data)
             .map(user => {
                 if (user && user.token) {
                     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -44,7 +44,7 @@ export class AuthenticationService {
         return new Promise((resolve, reject) => {
             FB.login(result => {
                 if (result.authResponse) {
-                    return this.http.post<any>(appConfig.apiUrl + `/auth/facebook`, {access_token: result.authResponse.accessToken})
+                    return this.http.post<any>(env.apiUrl + `/auth/facebook`, {access_token: result.authResponse.accessToken})
                     .toPromise()
                     .then(user => {
                         if (user && user.token) {

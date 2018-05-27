@@ -26,6 +26,16 @@
             h1 {
                 text-transform: uppercase;
             }
+            p {
+                color: #EEE;
+                &.funding_storage {
+                    font-weight: bold;
+                    color: #000;
+                }
+                &.funding_option {
+                    color: #000;
+                }
+            }
         }
         &:hover {
             box-shadow: 0 10px 16px rgba(0,0,0,.2);
@@ -36,6 +46,10 @@
             button {
                 background-color: $orange;
                 color: #FFF;
+                visibility: hidden;
+                &.funding_choose {
+                    visibility: visible;
+                }
             }
         }
     }

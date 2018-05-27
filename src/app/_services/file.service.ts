@@ -3,7 +3,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/comm
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { appConfig } from '../app.config';
+import { environment as env } from '../../environments/environment';
 
 import { File, Toast } from '../_models/_index';
 
@@ -23,30 +23,30 @@ export class FileService {
     }
 
     get(folder_id: any) {
-        return this.http.get<File[]>(appConfig.apiUrl + '/file/' + folder_id);
+        return this.http.get<File[]>(env.apiUrl + '/file/' + folder_id);
     }
 
     getOne(_id: any) {
-        return this.http.get<File>(appConfig.apiUrl + '/file/one/' + _id);
+        return this.http.get<File>(env.apiUrl + '/file/one/' + _id);
     }
 
     create(file: any, folder_id: any) {
-        return this.http.request(new HttpRequest('POST', appConfig.apiUrl + '/file/' + folder_id, file, { reportProgress: true }));
+        return this.http.request(new HttpRequest('POST', env.apiUrl + '/file/' + folder_id, file, { reportProgress: true }));
     }
 
     move(_id: any, folder: any) {
-        return this.http.put(appConfig.apiUrl + '/file/move/' + _id, folder);
+        return this.http.put(env.apiUrl + '/file/move/' + _id, folder);
     }
 
     rename(_id: any, name: any) {
-        return this.http.put(appConfig.apiUrl + '/file/rename/' + _id, name);
+        return this.http.put(env.apiUrl + '/file/rename/' + _id, name);
     }
 
     download(_id: string) {
-        return this.http.get(appConfig.apiUrl + '/file/download/' + _id, { responseType: 'arraybuffer' });
+        return this.http.get(env.apiUrl + '/file/download/' + _id, { responseType: 'arraybuffer' });
     }
 
     delete(_id: any) {
-        return this.http.delete(appConfig.apiUrl + '/file/' + _id);
+        return this.http.delete(env.apiUrl + '/file/' + _id);
     }
 }

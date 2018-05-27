@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { appConfig } from '../app.config';
+import { environment as env } from '../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -28,31 +28,31 @@ export class FolderService {
     }
 
     get(_id: string) {
-        return this.http.get<Folder>(appConfig.apiUrl + '/folder/' + _id);
+        return this.http.get<Folder>(env.apiUrl + '/folder/' + _id);
     }
 
     getChilds(_id: string) {
-        return this.http.get<Folder[]>(appConfig.apiUrl + '/folder/childs/' + _id);
+        return this.http.get<Folder[]>(env.apiUrl + '/folder/childs/' + _id);
     }
 
     create(folder: any) {
-        return this.http.post(appConfig.apiUrl + '/folder', folder);
+        return this.http.post(env.apiUrl + '/folder', folder);
     }
 
     move(_id: any, folder: any) {
-        return this.http.put(appConfig.apiUrl + '/folder/move/' + _id, folder);
+        return this.http.put(env.apiUrl + '/folder/move/' + _id, folder);
     }
 
     rename(_id: any, name: any) {
-        return this.http.put(appConfig.apiUrl + '/folder/rename/' + _id, name);
+        return this.http.put(env.apiUrl + '/folder/rename/' + _id, name);
     }
 
     download(_id: any) {
-        return this.http.get(appConfig.apiUrl + '/folder/download/' + _id, { responseType: 'arraybuffer' });
+        return this.http.get(env.apiUrl + '/folder/download/' + _id, { responseType: 'arraybuffer' });
     }
 
     delete(_id: string) {
-        return this.http.delete(appConfig.apiUrl + '/folder/' + _id);
+        return this.http.delete(env.apiUrl + '/folder/' + _id);
     }
 
 }

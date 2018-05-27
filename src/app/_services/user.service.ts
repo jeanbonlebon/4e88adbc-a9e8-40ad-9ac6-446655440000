@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-import { appConfig } from '../app.config';
+import { environment as env } from '../../environments/environment';
 
 import { User } from '../_models/user';
 
@@ -11,7 +10,7 @@ export class UserService {
     constructor(private http: HttpClient) {}
 
     get() {
-        return this.http.get<User>(appConfig.apiUrl + '/user');
+        return this.http.get<User>(env.apiUrl + '/user');
     }
 
 }

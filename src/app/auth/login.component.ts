@@ -47,7 +47,10 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/app']);
                 this.alertService.alert.next('Bienvenue ' + data.user.email);
             },
-            (err) => console.error(err)
+            (err) => {
+                this.alertService.alert.next('Votre adresse E-Mail ou votre mot de passe est invalide');
+                this.loginForm.reset();
+            }
         );
     }
 
