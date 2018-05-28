@@ -39,6 +39,10 @@ export class FolderService {
         return this.http.post(env.apiUrl + '/folder', folder);
     }
 
+    isShared(_id: any) {
+        return this.http.get<Folder>(env.apiUrl + '/share/' + _id);
+    }
+
     share(_id: any, status: string) {
         return this.http.put(env.apiUrl + '/share/' + _id, {status: status});
     }

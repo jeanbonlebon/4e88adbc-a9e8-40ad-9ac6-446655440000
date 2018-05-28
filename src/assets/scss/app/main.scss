@@ -1,16 +1,30 @@
+.align-right {
+    text-align: right;
+}
+.align-left {
+    text-align: left;
+}
+
 .zoneDropEmpty {
+    .intro_txt {
+        margin-top: 15px !important;
+        margin-bottom: 30px;
+        text-align: center;
+    }
     h2 {
         margin: 0;
         text-align: center;
         font-size: 1.3em;
     }
     div {
-        text-align: center;
         mat-icon {
             font-size: 5em;
             width: auto;
             height: auto;
         }
+    }
+    .container_icons {
+        margin-bottom: 15px;
     }
 }
 

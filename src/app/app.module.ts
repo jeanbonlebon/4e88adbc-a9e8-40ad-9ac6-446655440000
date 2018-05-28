@@ -19,7 +19,7 @@ import { AuthenticationService, AlertService, FolderService, FileService, UserSe
 import { AppHeaderComponent, AppLayoutComponent, SiteHeaderComponent, SiteLayoutComponent, SiteFooterComponent } from './_layout/_index';
 import { LoginComponent, RegisterComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
-import { FilesComponent } from './home/files/_index';
+import { PublicComponent } from './home/public/_index';
 // tslint:disable-next-line:max-line-length
 import { RenameComponent, AddFolderComponent, DeleteComponent, MoveComponent, AddFileComponent, WatchFileComponent } from './home/modals/_index';
 import { MentionsComponent, CguComponent } from './landing/terms/_index';
@@ -52,7 +52,7 @@ import 'rxjs/add/observable/forkJoin';
     ProfileComponent,
     UploadComponent,
     HomeComponent,
-    FilesComponent,
+    PublicComponent,
     RenameComponent,
     AddFolderComponent,
     AddFileComponent,

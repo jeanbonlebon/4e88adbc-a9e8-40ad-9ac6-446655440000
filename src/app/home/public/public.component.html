@@ -1,0 +1,63 @@
+<nav>
+    <ul id="headPres">
+        <li><a href="#"><img src="../assets/img/app_logo.png" /></a></li>
+        <li><a href="#"><h1>Sup<span>File</span></h1></a></li>
+    </ul>
+</nav>
+
+<section class="container">
+
+    <ul id="bradcrump" *ngIf='folder'>
+        <li><button mat-button (click)="getDatas(folder._id, false)">{{ folder.name }}</button></li>
+        <li *ngFor="let item of breadcrump">
+            <mat-icon>chevron_right</mat-icon>
+            <button mat-button (click)="getDatas(item._id, true)">{{ item.name }}</button>
+        </li>
+    </ul>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" class="list-head">
+        <div fxFlex="10%"></div>
+        <div fxFlex="35%"><span>Nom</span></div>
+        <div fxFlex="45%"><span>Modifications</span></div>
+        <div fxFlex="10%"><mat-icon color="primary">view_list</mat-icon></div>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <mat-list-item fxFlex="100%" class="list-container" *ngFor="let folder of folders">
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+                <button fxFlex="90%" mat-button class="list-line" (click)="getDatas(folder._id, false)">
+                    <div fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon>folder</mat-icon></div>
+                        <div fxFlex="40%" class="text-line"><h4 mat-line> {{folder.name}} </h4></div>
+                        <div fxFlex="40%" class="text-line"><p mat-line> {{folder.updatedAt | date}} </p></div>
+                    </div>
+                </button>
+                <div fxFlex="10%" class="actions">
+                    <button mat-button [matMenuTriggerFor]="itemMenu"><mat-icon>more_vert</mat-icon></button>
+                </div>
+            </div>
+
+            <mat-menu #itemMenu="matMenu" xPosition="before" yPosition="below">
+                <button mat-menu-item (click)="downloadFolder(folder)"><mat-icon>file_upload</mat-icon>Télécharger</button>
+            </mat-menu>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="100%" class="list-container" *ngFor="let file of files">
+            
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+                <button fxFlex="90%" mat-button class="list-line" (click)="downloadFile(file)">
+                    <div fxLayout="row wrap" fxLayoutAlign="start center">
+                        <div fxFlex="10%" class="icon-line"><mat-icon mat-list-icon> {{file.logoType}} </mat-icon></div>
+                        <div fxFlex="40%" class="text-line"><h4 mat-line> {{file.name}} </h4></div>
+                        <div fxFlex="40%" class="text-line"><p mat-line> {{file.updatedAt | date}} </p></div>
+                    </div>
+                </button>
+                <div fxFlex="10%"></div>
+            </div>
+    
+        </mat-list-item>
+
+    </div>
+
+</section>

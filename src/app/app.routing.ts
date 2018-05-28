@@ -7,7 +7,7 @@ import { SiteLayoutComponent } from './_layout/site/site-layout.component';
 
 import { LoginComponent, RegisterComponent } from './auth/_index';
 import { HomeComponent } from './home/_index';
-import { FilesComponent } from './home/files/_index';
+import { PublicComponent } from './home/public/_index';
 import { LandingComponent } from './landing/_index';
 import { MentionsComponent, CguComponent } from './landing/terms/_index';
 import { ProfileComponent } from './profile/_index';
@@ -35,7 +35,7 @@ const appRoutes: Routes = [
 
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'file/:id', component: FilesComponent}
+    { path: 'public/:id', component: PublicComponent}
 
 ];
 

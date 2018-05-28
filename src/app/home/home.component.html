@@ -77,9 +77,17 @@
     </div>
 
     <mat-card fxLayout="row wrap" fxLayoutAlign="start center" *ngIf="emptyFolders" class="zoneDropEmpty">
-        <h2 fxFlex="70%">Vous pouvez deposer un fichier dans cette zone ou creer un nouveau dossier</h2>
-        <div fxFlex="30%">
-            <button mat-button (click)="addFolder()"><mat-icon color="primary">create_new_folder</mat-icon></button>
+        <h2 fxFlex="100%" class="intro_txt">Vous pouvez ajouter un nouveau dossier ou importer un fichier</h2>
+        <div fxFlex="100%" class="container_icons">
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
+                <div fxFlex="45%" class="align-right">
+                    <button mat-button (click)="addFolder()"><mat-icon color="primary">create_new_folder</mat-icon></button>
+                </div>
+                <div fxFlex="10%"></div>
+                <div fxFlex="45%" class="align-left">
+                    <button mat-button (click)="addFile()"><mat-icon color="primary">file_upload</mat-icon></button>
+                </div>
+            </div>
         </div>
     </mat-card>
 

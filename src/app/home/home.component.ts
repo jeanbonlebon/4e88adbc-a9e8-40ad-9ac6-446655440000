@@ -12,7 +12,7 @@ import { Folder, File } from '../_models/_index';
 
 import { FolderService, FileService, AlertService } from '../_services/_index';
 
-import { AddFolderComponent, RenameComponent, DeleteComponent, MoveComponent, WatchFileComponent } from './modals/_index';
+import { AddFolderComponent, AddFileComponent, RenameComponent, DeleteComponent, MoveComponent, WatchFileComponent } from './modals/_index';
 
 @Component({
     selector: 'app-home',
@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit {
 
     public copyLink(_id: string) {
         const event = (e: ClipboardEvent) => {
-            e.clipboardData.setData('text/plain', env.baseUrl + '/file/' + _id);
+            e.clipboardData.setData('text/plain', env.baseUrl + '/public/' + _id);
             e.preventDefault();
             document.removeEventListener('copy', event);
         };
@@ -199,12 +199,23 @@ export class HomeComponent implements OnInit {
     }
 
     public addFolder() {
-        this.folder = this.folderService.thisFolder;
-        const dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : this.folder });
+        const folder = this.folderService.thisFolder;
+        const dialogRef = this.dialog.open(AddFolderComponent, { panelClass : 'dialogClass', data : folder });
         dialogRef.afterClosed().subscribe(result => {
             if (result && result.state === true) {
                 this.folderService.reload(this.folder);
                 this.alertService.alert.next('Dossier ' + result.name + ' creer');
+            }
+        });
+    }
+
+    addFile() {
+        const folder = this.folderService.thisFolder;
+        const dialogRef = this.dialog.open(AddFileComponent, { panelClass : 'dialogClass', data : folder });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result && result.state === true) {
+                this.folderService.reload(this.folder);
+                this.alertService.alert.next('Le fichier ' + result.name + ' à bien été uploader');
             }
         });
     }
