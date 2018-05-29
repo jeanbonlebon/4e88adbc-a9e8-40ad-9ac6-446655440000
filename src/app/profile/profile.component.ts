@@ -45,6 +45,12 @@ export class ProfileComponent {
         user.lastName = data.profile.lastName;
         user.space_available = data.space_available;
 
+        if (data.facebook) {
+            user.social = true;
+        } else {
+            user.social = false;
+        }
+        console.log(user);
         return user;
     }
 

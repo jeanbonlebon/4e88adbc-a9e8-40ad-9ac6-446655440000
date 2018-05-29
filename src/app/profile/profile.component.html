@@ -3,7 +3,8 @@
     <h2>Bienvenue {{user.firstName}} !</h2>
 
     <section>
-        <h4>Vous pouvez modifier vos informations personnelles</h4>
+        <h4 *ngIf="user.social === true">Vos informations personnelles</h4>
+        <h4 *ngIf="user.social === false">Vous pouvez modifier vos informations personnelles</h4>
 
         <mat-accordion>
 
@@ -26,20 +27,22 @@
                         <mat-icon>mail_outline</mat-icon>
                     </mat-panel-description>
                 </mat-expansion-panel-header>
+                
+                <div *ngIf="user.social === false">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Nouvelle Adresse E-Mail">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Confirmer nouvelle Adresse E-Mail">
+                    </mat-form-field>
 
-                <mat-form-field>
-                    <input matInput type="text" placeholder="Nouvelle Adresse E-Mail">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput type="text" placeholder="Confirmer nouvelle Adresse E-Mail">
-                </mat-form-field>
-
-                <mat-action-row>
-                    <button mat-button color="primary">Modifier</button>
-                </mat-action-row>
+                    <mat-action-row>
+                        <button mat-button color="primary">Modifier</button>
+                    </mat-action-row>
+                </div>
             </mat-expansion-panel>
 
-            <mat-expansion-panel hideToggle="true">
+            <mat-expansion-panel hideToggle="true" *ngIf="user.social === false">
                 <mat-expansion-panel-header>
                     <mat-panel-title>Mot de passe</mat-panel-title>
                     <mat-panel-description>

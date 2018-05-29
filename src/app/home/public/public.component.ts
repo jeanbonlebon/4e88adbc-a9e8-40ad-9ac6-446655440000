@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { saveAs } from 'file-saver';
 
@@ -15,13 +15,15 @@ import { FileService, FolderService } from '../../_services/_index';
 export class PublicComponent implements OnInit, OnDestroy {
 
     private sub: any;
-    folder: Folder;
+    limitFolder: Folder;
+    folder: any;
     folders: any;
     files: any;
     breadcrump = [];
 
     constructor(private route: ActivatedRoute,
                 private fileType: FileType,
+                private router: Router,
                 private fileService: FileService,
                 private folderService: FolderService) {}
 
@@ -36,25 +38,35 @@ export class PublicComponent implements OnInit, OnDestroy {
     private checkPublic(id: any) {
         this.folderService.isShared(id).subscribe(
             (data) => {
-                this.folder = data;
-                this.getDatas(this.folder._id.toString(), false);
+                if (data) {
+                    this.limitFolder = data;
+                    this.getDatas(this.limitFolder._id.toString(), false, true);
+                } else {
+                    this.router.navigate(['/']);
+                }
             },
             (err) => console.error(err)
         );
     }
 
-    private getDatas(_id: string, isReturn: boolean) {
+    private getDatas(_id: string, isReturn: boolean, isRoot: boolean) {
 
         const arrayRes = [];
 
+        arrayRes.push(this.folderService.get(_id));
         arrayRes.push(this.folderService.getChilds(_id));
         arrayRes.push(this.fileService.get(_id));
 
         Observable.forkJoin(arrayRes).subscribe(
             (data) => {
-                this.folders = data[0];
-                this.files = data[1];
-                this.setBreadcrump(data[0], isReturn);
+                this.folder = data[0];
+                this.folders = data[1];
+                this.files = data[2];
+                if (isRoot !== true) {
+                    this.setBreadcrump(this.folder, isReturn);
+                } else {
+                    this.breadcrump = [];
+                }
                 this.files.forEach(file => file = this.fileType.setFileType(file));
             },
             (err) => console.error(err)
