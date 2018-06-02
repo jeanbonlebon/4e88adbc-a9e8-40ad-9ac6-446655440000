@@ -21,7 +21,7 @@ export class LandingComponent {
         // tslint:disable-next-line:max-line-length
         {name: 'Sécurité', icon: 'enhanced_encryption', description: 'Vos données sont cryptées via plusieurs méthodes de chiffrements implémentées par nos soins.'},
         // tslint:disable-next-line:max-line-length
-        {name: 'Support', icon: 'forum', description: 'Si vous souhaitez du développement spécifique adapté a votre entreprise nous vous proposons de faire évoluer votre offre.'}
+        {name: 'Support', icon: 'forum', description: 'Si vous souhaitez du développement adapté à votre entreprise nous vous proposons de faire évoluer votre offre.'}
     ];
     constructor() {}
 }
