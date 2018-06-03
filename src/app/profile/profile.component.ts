@@ -50,7 +50,7 @@ export class ProfileComponent {
         } else {
             user.social = false;
         }
-        console.log(user);
+        // console.log(user);
         return user;
     }
 

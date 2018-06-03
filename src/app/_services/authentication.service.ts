@@ -49,7 +49,7 @@ export class AuthenticationService {
                     .then(user => {
                         if (user && user.token) {
                             localStorage.setItem('currentUser', JSON.stringify(user));
-                            console.log(JSON.parse(localStorage.getItem('currentUser')));
+                            // console.log(JSON.parse(localStorage.getItem('currentUser')));
                             this.isLoginSubject.next(true);
                         }
                         resolve(user);

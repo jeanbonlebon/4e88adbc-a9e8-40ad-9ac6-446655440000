@@ -32,10 +32,10 @@ export class UploadComponent implements OnInit {
         this.fileService.create(data.file, data.folder_id).subscribe((event: HttpEvent<any>) => {
           switch (event.type) {
             case HttpEventType.Sent:
-              console.log(data, 'Request sent!');
+              // console.log(data, 'Request sent!');
               break;
             case HttpEventType.ResponseHeader:
-              console.log('Server send ok');
+              // console.log('Server send ok');
               break;
             case HttpEventType.UploadProgress:
               const percentDone = Math.round(100 * event.loaded / event.total);
