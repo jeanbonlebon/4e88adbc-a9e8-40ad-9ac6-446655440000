@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Toast } from '../_models/_index';
 
@@ -10,13 +11,14 @@ import { FileService, FolderService } from '../_services/_index';
     templateUrl: './upload.directive.html'
 })
 
-export class UploadComponent implements OnInit {
+export class UploadComponent implements OnInit, OnDestroy  {
     alerts: any[] = [];
+    isUpload: Subscription;
 
     constructor(private fileService: FileService, private folderService: FolderService) { }
 
     ngOnInit() {
-        this.fileService.getAlert().subscribe((data: Toast) => {
+        this.isUpload = this.fileService.getAlert().subscribe((data: Toast) => {
             this.addUpload(data);
         });
     }
@@ -52,5 +54,9 @@ export class UploadComponent implements OnInit {
 
     removeUpload(alert: Toast) {
         this.alerts = this.alerts.filter(x => x !== alert);
+    }
+
+    ngOnDestroy() {
+        this.isUpload.unsubscribe();
     }
 }
