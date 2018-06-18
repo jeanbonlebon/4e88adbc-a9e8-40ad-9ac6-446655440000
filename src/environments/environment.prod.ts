@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://supfile.org',
-  apiUrl: 'https://api.supfile.org'
+  baseUrl: 'http://192.168.1.17',
+  apiUrl: 'http://192.168.1.16'
 };
