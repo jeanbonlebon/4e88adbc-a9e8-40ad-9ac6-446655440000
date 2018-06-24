@@ -2,7 +2,7 @@
     <div class="container" fxLayout="row wrap" fxLayoutAlign="start center">
         <div class="text-intro center-block">Supfile - Stockage Cloud</div>
         <h1 class="center-block">Votre plateforme Cloud de stockage de données</h1>
-        <p class="sub-intro center-block">Grâce à notre service Supfile vous pouvez stocker et acceder a vos données n'importe ou</p>
+        <p class="sub-intro center-block">Grâce à notre service Supfile vous pouvez stocker et accéder a vos données n'importe où</p>
         <div class="app_demo">
             <img src="./assets/img/laptop.png" />
         </div>
@@ -48,7 +48,7 @@
         <div class="photo" fxFlex="50%"></div>
         <div class="infos" fxFlex="50%">
             <h3>Découvrez notre application mobile</h3>
-            <p>Pour accèder à vos données ou que vous vous trouviez nous vous proposons notre service sous forme d'application mobile. Disponible sur IOS et Androis</p>
+            <p>Pour accèder à vos données où que vous vous trouviez nous vous proposons notre service sous forme d'application mobile. Disponible sur IOS et Android</p>
             <div class="icons_download">
                 <a href="#"><img src="./assets/img/app_store.png" /></a>
                 <a href="#"><img src="./assets/img/play_store.png" style="width: 240px;"/></a>
@@ -62,14 +62,14 @@
 
         <div fxFlex="100%" class="headTitle">
             <h1>Nos Offres</h1>
-            <h3>Nous vous proposons différents types d'offres adaptées à votre profil.</h3>
+            <h3>Nous vous proposons différents types d'offres adaptés à votre profil :</h3>
         </div>
         <div *ngFor="let offer of offers" fxFlex="25%">
 
                 <mat-card>
                     <mat-card-header [ngClass]="{'funding_active' : offer.active}">
                         <mat-card-title>{{ offer.type }}</mat-card-title>
-                        <mat-card-subtitle>Name</mat-card-subtitle>
+                        <mat-card-subtitle></mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
                         <h1><strong>{{ offer.pricing }}</strong></h1>
@@ -107,7 +107,7 @@
 
         <div fxFlex="100%">
             <h1>Contact</h1>
-            <h3>Si vous avez une question à propos de notre service, n'hesitez pas à nous contacter.</h3>
+            <h3>Si vous avez une question à propos de notre service, n'hésitez pas à nous contacter.</h3>
         </div>
 
         <mat-form-field fxFlex="100%">

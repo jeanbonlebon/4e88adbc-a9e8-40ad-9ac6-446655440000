@@ -9,8 +9,8 @@ export class LandingComponent {
 
     offers: any  = [
       // tslint:disable-next-line:max-line-length
-      {active: false, type: 'Starter', pricing: 'gratuit', storage: '30Gb', transfert : false, virus : false, analyse: false, choose: false},
-      {active: true, type: 'Developer', pricing: '15€ /Mo', storage: '500Gb', transfert : true, virus : false, analyse: false, choose: true},
+      {active: false, type: 'Starter', pricing: 'gratuit', storage: '30Go', transfert : false, virus : false, analyse: false, choose: false},
+      {active: true, type: 'Developer', pricing: '15€ /Mo', storage: '500Go', transfert : true, virus : false, analyse: false, choose: true},
       {active: false, type: 'Business', pricing: '30€ /Mo', storage: '2To', transfert : true, virus : true, analyse: false, choose: true},
       {active: false, type: 'Compagnies', pricing: '60€ /Mo', storage: '10To', transfert : true, virus : true, analyse: true, choose: true}
     ];
